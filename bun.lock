@@ -12,6 +12,7 @@
       },
       "devDependencies": {
         "@types/animejs": "^3.1.13",
+        "@types/dom-webcodecs": "^0.1.14",
         "typescript": "~5.7.2",
         "vite": "^6.3.1",
       },
@@ -133,6 +134,8 @@
     "@types/animejs": ["@types/animejs@3.1.13", "", {}, "sha512-yWg9l1z7CAv/TKpty4/vupEh24jDGUZXv4r26StRkpUPQm04ztJaftgpto8vwdFs8SiTq6XfaPKCSI+wjzNMvQ=="],
 
     "@types/css-font-loading-module": ["@types/css-font-loading-module@0.0.12", "", {}, "sha512-x2tZZYkSxXqWvTDgveSynfjq/T2HyiZHXb00j/+gy19yp70PHCizM48XFdjBCWH7eHBD0R5i/pw9yMBP/BH5uA=="],
+
+    "@types/dom-webcodecs": ["@types/dom-webcodecs@0.1.14", "", {}, "sha512-ba9aF0qARLLQpLihONIRbj8VvAdUxO+5jIxlscVcDAQTcJmq5qVr781+ino5qbQUJUmO21cLP2eLeXYWzao5Vg=="],
 
     "@types/earcut": ["@types/earcut@2.1.4", "", {}, "sha512-qp3m9PPz4gULB9MhjGID7wpo3gJ4bTGXm7ltNDsmOvsPduTeHp8wSW9YckBj3mljeOh4F0m2z/0JKAALRKbmLQ=="],
 
