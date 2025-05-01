@@ -4,7 +4,7 @@ import { Actor } from "./actor";
 import { Tower } from "./Towers/tower";
 import { Vector2 } from "./math";
 import { GatlingGun } from "./Towers/gatling_gun";
-import { Seeker } from "./Towers/tack";
+import { Tack } from "./Towers/tack";
 
 const TOWER_PORTRAIT_HEIGHT = 24;
 const TOWER_PORTRAIT_WIDTH = 24;
@@ -159,15 +159,15 @@ export class GameUI extends Actor {
     portrait.x = 0;
     portrait.y = 0;
 
-    const spawnSeeking = async (game: Game, posX: number, posY: number) => {
-      return new Seeker(game, posX, posY);
+    const spawnTack = async (game: Game, posX: number, posY: number) => {
+      return new Tack(game, posX, posY);
     };
 
     const sprite2 = new Graphics()
       .rect(0, 0, TOWER_PORTRAIT_WIDTH, TOWER_PORTRAIT_HEIGHT)
       .fill(0x78521a);
 
-    const portrait2 = new TowerPorait(game, spawnSeeking, 12, 12, sprite2, 20);
+    const portrait2 = new TowerPorait(game, spawnTack, 12, 12, sprite2, 20);
     game.registerActor(portrait2);
     this.addChild(portrait2);
     portrait2.x = 0;

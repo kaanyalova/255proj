@@ -1,2 +1,2 @@
-export const SHOW_DEBUG_RAYCASTS = true;
-export const SHOW_DEBUG_NEXT_NODE_MARKERS = true;
+export const SHOW_DEBUG_RAYCASTS = false;
+export const SHOW_DEBUG_NEXT_NODE_MARKERS = false;
