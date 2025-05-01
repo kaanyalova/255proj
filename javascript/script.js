@@ -1,3 +1,5 @@
+import { profiles } from "./data";
+
 let currentIndex = 0; // Which profile we are currently showing
 
 document.addEventListener("DOMContentLoaded", function () {
