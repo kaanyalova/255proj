@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Create Account</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: -apple-system, BlinkMacSystemFont, "San Francisco",
+          "Segoe UI", Roboto, sans-serif;
+        background: url("images/background.jpg") no-repeat center center fixed;
+        background-size: cover;
+      }
+
+      .form-wrapper {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .form-container {
+        max-width: 500px;
+        padding: 40px;
+        border-radius: 20px;
+        backdrop-filter: blur(15px);
+        background-color: rgba(0, 0, 0, 0.4);
+        color: white;
+        width: 100%;
+      }
+
+      label,
+      .helper-text {
+        color: #ffffff !important;
+      }
+
+      .input-field input[type="text"],
+      .file-path-wrapper input {
+        color: white;
+        border-bottom: 1px solid #ffffff !important;
+      }
+
+      .file-path-wrapper input::placeholder {
+        color: #cccccc;
+      }
+
+      .btn {
+        margin-top: 20px;
+      }
+
+      .red-text {
+        color: #ff5252 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-wrapper">
+      <div class="form-container z-depth-5">
+        <h5 class="center-align">Create Your Profile</h5>
+        <form id="profileForm">
+          <div class="input-field">
+            <input
+              id="name"
+              name="name"
+              type="text"
+              maxlength="15"
+              pattern="[A-Za-z]+"
+              required
+            />
+            <label for="name">Name</label>
+            <span
+              class="helper-text"
+              data-error="Only letters, max 15 characters"
+            ></span>
+          </div>
+          <div class="input-field">
+            <input
+              id="surname"
+              name="surname"
+              type="text"
+              maxlength="15"
+              pattern="[A-Za-z]+"
+              required
+            />
+            <label for="surname">Surname</label>
+            <span
+              class="helper-text"
+              data-error="Only letters, max 15 characters"
+            ></span>
+          </div>
+          <div class="file-field input-field">
+            <div class="btn white black-text">
+              <span>Upload Photos</span>
+              <input
+                type="file"
+                id="photos"
+                name="photos"
+                multiple
+                accept="image/*"
+              />
+            </div>
+            <div class="file-path-wrapper">
+              <input
+                class="file-path validate"
+                type="text"
+                placeholder="Upload up to 7 images"
+              />
+            </div>
+          </div>
+          <p class="red-text" id="photoError" style="display: none">
+            You can upload a maximum of 7 photos.
+          </p>
+
+          <div class="file-field input-field">
+            <div class="btn white black-text">
+              <span>Bilkent ID Card</span>
+              <input
+                type="file"
+                id="bilkentID"
+                name="bilkentID"
+                accept="image/*"
+              />
+            </div>
+            <div class="file-path-wrapper">
+              <input
+                class="file-path validate"
+                type="text"
+                placeholder="Upload Bilkent ID Card"
+              />
+            </div>
+          </div>
+          <p class="red-text" id="idError" style="display: none">
+            Please upload 1 Bilkent ID photo.
+          </p>
+
+          <div class="center-align">
+            <button type="submit" class="btn waves-effect waves-light">
+              Submit
+            </button>
+          </div>
+        </form>
+
+        <div class="center-align">
+          <a
+            href="index.html"
+            class="btn grey darken-2 waves-effect waves-light"
+            style="margin-top: 15px"
+            >Back to Home</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        push,
+      } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+      import {
+        getStorage,
+        ref as sRef,
+        uploadBytes,
+        getDownloadURL,
+      } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyB3le8CaoHoVTXoAF8w4ycJcArEZRDNdqg",
+        authDomain: "bilmatchform.firebaseapp.com",
+        databaseURL: "https://bilmatchform-default-rtdb.firebaseio.com",
+        projectId: "bilmatchform",
+        storageBucket: "bilmatchform.appspot.com",
+        messagingSenderId: "664286524616",
+        appId: "1:664286524616:web:e00ace5c4d819748e0a1fd",
+        measurementId: "G-09PRMXRQWZ",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase(app);
+      const storage = getStorage(app);
+
+      const form = document.getElementById("profileForm");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const surname = document.getElementById("surname").value.trim();
+        const photos = document.getElementById("photos").files;
+        const bilkentID = document.getElementById("bilkentID").files[0];
+
+        const photoError = document.getElementById("photoError");
+        const idError = document.getElementById("idError");
+
+        if (photos.length > 7) {
+          photoError.style.display = "block";
+          return;
+        } else {
+          photoError.style.display = "none";
+        }
+
+        if (!bilkentID) {
+          idError.style.display = "block";
+          return;
+        } else {
+          idError.style.display = "none";
+        }
+
+        const photoURLs = [];
+
+        for (let file of photos) {
+          const storageRef = sRef(
+            storage,
+            "photos/" + Date.now() + "-" + file.name
+          );
+          await uploadBytes(storageRef, file);
+          const url = await getDownloadURL(storageRef);
+          photoURLs.push(url);
+        }
+
+        const idRef = sRef(
+          storage,
+          "idcards/" + Date.now() + "-" + bilkentID.name
+        );
+        await uploadBytes(idRef, bilkentID);
+        const idURL = await getDownloadURL(idRef);
+
+        const submission = {
+          name,
+          surname,
+          photos: photoURLs,
+          bilkentID: idURL,
+          timestamp: Date.now(),
+        };
+
+        const submissionsRef = ref(db, "submissions");
+        await push(submissionsRef, submission);
+
+        M.toast({ html: "Form submitted successfully!" });
+        form.reset();
+        document
+          .querySelectorAll(".file-path")
+          .forEach((el) => (el.value = ""));
+      });
+    </script>
+  </body>
+</html>

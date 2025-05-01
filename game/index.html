@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game</title>
+  </head>
+
+  <script type="module">
+    import { initPixi } from "./src/main.ts";
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      const screenWidth = window.screen.width;
+      const screenHeight = window.screen.height;
+
+      const canvas = document.getElementsByClassName("canvas")[0];
+
+      const canvasHeight = canvas.clientHeight;
+      const canvasWidth = canvas.clientWidth;
+
+      const scalingGuess = Math.floor((screenWidth * 0.8) / 384);
+
+      const sizeStyle = `height: ${scalingGuess * 216}px; width: ${
+        scalingGuess * 384
+      }px;`;
+
+      canvas.setAttribute("style", sizeStyle);
+
+      console.log(
+        `Guessed a pixelart scale of ${scalingGuess} based on floor(${screenWidth}/384)`
+      );
+
+      await initPixi(scalingGuess);
+    });
+  </script>
+
+  <body>
+    <div class="canvasWrapper">
+      <div class="canvas"></div>
+    </div>
+  </body>
+</html>
+
+<style>
+  :global(body) {
+    margin: 0;
+    background-color: var(--bg);
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .canvas {
+    aspect-ratio: 16/9;
+  }
+
+  .canvasWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+</style>

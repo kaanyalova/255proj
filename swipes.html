@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Swipes</title>
+  </head>
+  <script src="javascript/swipes.ts" type="module"></script>
+
+  <body>
+    <div class="container">
+      <div class="draggable">
+        <div class="profile">
+          <img
+            src="/images/rustacean-orig-noshadow.png"
+            alt=""
+            class="profile-image"
+          />
+
+          <h3>Name Surname</h3>
+          <h4>Age: 2000</h4>
+          <div class="profile-desc">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio ipsam,
+            animi laborum praesentium explicabo maiores voluptate laudantium
+            eveniet quasi accusamus est maxime, sint molestias quas porro
+            delectus quibusdam autem laboriosam!
+          </div>
+        </div>
+
+        <div class="bottom">
+          <button class="dislike bottom-text" id="dislikeBtn">
+            <!--
+            TODO: Migrate from svelte
+            <ChevronLeft height="{50}" width="{50}"></ChevronLeft>
+            -->
+            Dislike
+          </button>
+          <button class="like bottom-text" id="likeBtn">
+            Like
+            <!--
+            <ChevronRight height="{50}" width="{50}"></ChevronRight>
+            -->
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<style>
+  button {
+    color: white;
+  }
+  .profile-img {
+    pointer-events: none;
+    padding: 10px;
+    display: block;
+    margin: 10px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .draggable {
+    top: calc(20vh);
+    left: calc(50vw - 400px);
+    position: absolute;
+    width: 800px;
+    height: 70vh;
+    /*background-color: whitesmoke;*/
+    color: black;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(
+      90deg,
+      rgb(247, 164, 164) 25%,
+      rgb(164, 231, 178) 75%
+    );
+    font-family: Arial, Helvetica, sans-serif;
+    user-select: none;
+  }
+
+  @media (width < 800px) {
+    .draggable {
+      width: 600px;
+      left: calc(50vw - 300px) !important;
+    }
+  }
+
+  @media (width < 600px) {
+    .draggable {
+      width: 400px;
+      left: calc(50vw - 200px) !important;
+    }
+  }
+
+  /*
+	Too small and breaks on  smaller phones 
+	@media (width < 400px) {
+		.draggable {
+			width: 300px;
+			left: calc(50vw - 150px) !important;
+		}
+	}
+		
+	*/
+
+  .profile-desc {
+    padding: 10px;
+    overflow-y: auto;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 30px;
+  }
+
+  h4 {
+    margin: 5px;
+  }
+
+  .container {
+    background: url(/images/background.jpg) no-repeat center center fixed !important;
+    background-size: cover !important;
+    height: calc(100vh - 21px);
+    box-shadow: rgba(0, 0, 0);
+    touch-action: none;
+  }
+
+  :global(body, html) {
+    /* Please stop scrolling on mobile */
+    overflow: hidden;
+    position: relative;
+  }
+
+  .bottom {
+    width: 100%;
+    height: 60px;
+    background-color: blue;
+    display: flex;
+    background: linear-gradient(
+      90deg,
+      rgba(247, 0, 0, 1) 25%,
+      rgba(83, 237, 114, 1) 75%
+    );
+    border-radius: 0px 0px 20px 20px;
+    margin-top: auto;
+    justify-content: space-between;
+  }
+
+  .profile {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .bottom-text {
+    display: flex;
+    align-items: center;
+
+    font-size: 25px;
+  }
+
+  .dislike {
+    color: white;
+    fill: white;
+    margin-left: 12px;
+  }
+  .like {
+    color: black;
+    margin-right: 12px;
+  }
+
+  img {
+    pointer-events: none;
+  }
+</style>

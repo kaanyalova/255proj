@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sign In</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header-bar">
+      <div class="header-left">
+        <img class="logo" src="images/logo.png" alt="BilMatch Logo" />
+      </div>
+
+      <h1 class="title">Matching Majors, Creating Bonds</h1>
+
+      <div class="header-right">
+        <a href="form.html" class="create-account-button">Create Account</a>
+      </div>
+    </header>
+
+    <main>
+      <div class="selection">
+        <p class="intro">Welcome Bilkenter! Fill out to start adventure:</p>
+
+        <div class="form-group">
+          <label for="major">Select Your Major</label>
+          <select id="major">
+            <option value="">Choose Major</option>
+            <option value="ACC">ACC – Accounting</option>
+            <option value="ADA">ADA – Art, Design & Animation</option>
+            <option value="AMER">AMER – American Studies</option>
+            <option value="ARCH">ARCH – Architecture</option>
+            <option value="BTE">BTE – Curriculum & Instruction</option>
+            <option value="CHEM">CHEM – Chemistry</option>
+            <option value="CI">CI – Curriculum & Instruction</option>
+            <option value="CINT">CINT – International Studies</option>
+            <option value="COMD">COMD – Communication Disorders</option>
+            <option value="CS">CS – Computer Science</option>
+            <option value="CTE">CTE – Computer Engineering</option>
+            <option value="CTIS">CTIS – Information Systems</option>
+            <option value="ECON">ECON – Economics</option>
+            <option value="EDEB">EDEB – Turkish & ELT</option>
+            <option value="EDU">EDU – Basic Education</option>
+            <option value="EEE">EEE – Electrical Engineering</option>
+            <option value="ELIT">ELIT – English Language Teaching</option>
+            <option value="ELS">ELS – Academic English</option>
+            <option value="EMBA">EMBA – Management</option>
+            <option value="ENG">ENG – Academic English</option>
+            <option value="ETE">ETE – Curriculum & Instruction</option>
+            <option value="FA">FA – Fine Arts</option>
+            <option value="FRP">FRP – Transport & Planning</option>
+            <option value="GE">GE – General Education</option>
+            <option value="GRA">GRA – Graphic Design</option>
+            <option value="HART">HART – Architectural Technology</option>
+            <option value="HCIV">HCIV – History of Civilization</option>
+            <option value="HIST">HIST – History</option>
+            <option value="HUM">HUM – Program in Humanities</option>
+            <option value="IAED">IAED – Interior Architecture & Design</option>
+            <option value="IE">IE – Industrial Engineering</option>
+            <option value="IELTS">IELTS – English Testing Prep</option>
+            <option value="IR">IR – International Relations</option>
+            <option value="LAUD">LAUD – Urban Design</option>
+            <option value="LAW">LAW – Law</option>
+            <option value="LNG">LNG – Second Language Teaching</option>
+            <option value="MAN">MAN – Management</option>
+            <option value="MATH">MATH – Mathematics</option>
+            <option value="MBA">MBA – Business Administration</option>
+            <option value="MBG">MBG – Molecular Biology & Genetics</option>
+            <option value="ME">ME – Mechanical Engineering</option>
+            <option value="MSC">MSC – Music Composition</option>
+            <option value="MSN">MSN – Master of Science in Nursing</option>
+            <option value="MTE">MTE – Curriculum & Instruction</option>
+            <option value="MUS">MUS – Music Performance</option>
+            <option value="NSC">NSC – Neuroscience</option>
+            <option value="PHIL">PHIL – Philosophy</option>
+            <option value="PHYS">PHYS – Physics</option>
+            <option value="POLS">POLS – Political Science</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="year">Select Your Year</label>
+          <select id="year">
+            <option value="">Choose Year</option>
+            <option value="1">Year 1</option>
+            <option value="2">Year 2</option>
+            <option value="3">Year 3</option>
+            <option value="4">Year 4</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Select Your Gender</label>
+          <div class="gender-options">
+            <label class="gender-label">
+              <input type="radio" name="gender" value="male" /> Male
+            </label>
+            <label class="gender-label">
+              <input type="radio" name="gender" value="female" /> Female
+            </label>
+          </div>
+        </div>
+        <button class="signinButton" id="signInButton">Sign In</button>
+
+        >
+      </div>
+
+      <div id="profiles-container" style="display: none"></div>
+    </main>
+
+    <nav class="navbar">
+      <ul class="nav-links">
+        <li>
+          <a href="index.html">
+            <img src="images/home.png" alt="Home" class="nav-icon" />
+          </a>
+        </li>
+        <li>
+          <a href="matches.html">
+            <img src="images/matches.png" alt="Matches" class="nav-icon" />
+          </a>
+        </li>
+        <li>
+          <a href="profile.html">
+            <img src="images/profile.png" alt="Profile" class="nav-icon" />
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <footer>© 2024 BilMatch</footer>
+
+    <script src="javascript/data.js"></script>
+
+    <script src="javascript/script.js"></script>
+  </body>
+</html>
