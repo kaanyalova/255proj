@@ -10,29 +10,20 @@
   <body>
     <div class="container">
       <div class="draggable">
-        <div class="profile">
-          <img
-            src="/images/rustacean-orig-noshadow.png"
-            alt=""
-            class="profile-image"
-          />
-
-          <h3>Name Surname</h3>
-          <h4>Age: 2000</h4>
-          <div class="profile-desc">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio ipsam,
-            animi laborum praesentium explicabo maiores voluptate laudantium
-            eveniet quasi accusamus est maxime, sint molestias quas porro
-            delectus quibusdam autem laboriosam!
-          </div>
-        </div>
+        <div class="profile" id="profile-slot"></div>
 
         <div class="bottom">
           <button class="dislike bottom-text" id="dislikeBtn">
-            <!--
-            TODO: Migrate from svelte
-            <ChevronLeft height="{50}" width="{50}"></ChevronLeft>
-            -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#e8eaed"
+            >
+              <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z" />
+            </svg>
+
             Dislike
           </button>
           <button class="like bottom-text" id="likeBtn">
@@ -48,16 +39,42 @@
 </html>
 
 <style>
+  body {
+    margin: 0;
+    overflow: hidden;
+  }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    /*
+	When the scroll animations happen there is an bounce effect on mobile and some desktop browsers
+	because there is no way of putting the image over the page boundaries (that i can find) we disable it completely. 
+	*/
+    overscroll-behavior: none;
+  }
+
+  button {
+    border: none;
+    outline: none;
+    padding: 0;
+    border: none;
+    background: none;
+  }
+
   button {
     color: white;
   }
   .profile-img {
     pointer-events: none;
     padding: 10px;
-    display: block;
     margin: 10px;
     max-width: 100%;
     height: auto;
+    object-fit: contain;
   }
 
   .draggable {
@@ -108,6 +125,7 @@
   .profile-desc {
     padding: 10px;
     overflow-y: auto;
+    font-size: 25px;
   }
 
   h3 {
@@ -117,12 +135,13 @@
 
   h4 {
     margin: 5px;
+    font-size: 25px;
   }
 
   .container {
     background: url(/images/background.jpg) no-repeat center center fixed !important;
     background-size: cover !important;
-    height: calc(100vh - 21px);
+    height: calc(100vh);
     box-shadow: rgba(0, 0, 0);
     touch-action: none;
   }
@@ -153,6 +172,8 @@
     align-items: center;
     flex-direction: column;
     padding: 20px;
+    width: 100%;
+    overflow: hidden;
   }
 
   .bottom-text {

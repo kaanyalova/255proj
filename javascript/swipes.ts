@@ -1,4 +1,5 @@
 import { animate, createDraggable, Draggable, JSAnimation } from "animejs";
+import { profiles } from "./data.ts";
 
 function reset(animation: JSAnimation, draggable: Draggable) {
   if (animation) {
@@ -11,9 +12,44 @@ function reset(animation: JSAnimation, draggable: Draggable) {
 
   let el = document.getElementsByClassName("draggable")[0] as HTMLElement;
   el.style.backgroundColor = "white";
+  onSwipe();
+}
+
+let index = 0;
+
+function onSwipe() {
+  if (index < profiles.length) {
+    index += 1;
+
+    const inner = /*html*/ ` <img
+    src="${profiles[index].image}"  
+    height="400"
+    alt=""
+      class="profile-image"
+      onerror="this.src='images/NoProfilePic.png'"
+    />
+
+    <h3>${profiles[index].name}</h3>
+    <h4>Age: ${profiles[index].age}</h4>
+    <div class="profile-desc">
+    ${profiles[index].bio}
+    </div>`;
+
+    let el = document.getElementById("profile-slot");
+
+    if (el) {
+      el.innerHTML = inner;
+    } else {
+      console.error("cannot find profile-slot");
+    }
+  } else {
+    // TODO navigate to found page
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  onSwipe();
+
   let animation: JSAnimation;
   let draggable: Draggable;
 

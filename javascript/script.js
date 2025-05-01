@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const selectedMajor = document.getElementById("major").value;
 
     if (selectedMajor === "CTIS") {
+      window.location.href = "/swipes";
+
       document.querySelector(".selection").style.display = "none"; // Hide the form part
       document.getElementById("profiles-container").style.display = "flex"; // Show profiles container
       showProfile(currentIndex);
