@@ -55,6 +55,8 @@ export enum CollisionLayer {
 }
 
 export class Game {
+  START_MONEY_AMOUNT = 50;
+
   private app: Application;
   private scale: number;
   gameMap: GameMap | undefined;
@@ -67,8 +69,8 @@ export class Game {
   private healthText: Text | undefined;
   private money: number = 50;
   private moneyText: Text | undefined;
-
-  health = 100;
+  private roundText: Text | undefined;
+  health: number = 100;
 
   constructor(app: Application, scale: number) {
     this.app = app;
@@ -159,6 +161,8 @@ export class Game {
     const gameUI = new GameUI(this);
     await this.insertActorToStage(gameUI);
 
+    this.initializeStatsUI();
+
     //const enemy = new Enemy(this);
     //await this.insertActorToStage(enemy);
 
@@ -166,17 +170,6 @@ export class Game {
     setInterval(() => {
       this.recentCollisions.clear();
     }, 1000);
-
-    const textStyle = new TextStyle({ fontSize: 14, fill: 0xf85149 });
-
-    this.healthText = new Text({
-      text: new Number(this.health),
-      style: textStyle,
-    });
-    this.healthText.y = 200;
-    this.healthText.x = 4;
-
-    this.stage.addChild(this.healthText);
   }
 
   tick(deltaTime: Ticker) {
@@ -355,6 +348,53 @@ export class Game {
     this.colliders.get(layer)?.delete(self.uuid);
   }
 
+  initializeStatsUI() {
+    console.log("init game ui");
+    const textStyle = new TextStyle({
+      fontSize: 10,
+      fill: 0xf85149,
+      letterSpacing: -1.5,
+    });
+
+    this.healthText = new Text({
+      text: `${this.health} ❤️`,
+      style: textStyle,
+    });
+    this.healthText.y = 200;
+    this.healthText.x = 4;
+
+    this.stage.addChild(this.healthText);
+
+    const roundTextStyle = new TextStyle({
+      fontSize: 10,
+      fill: 0xdddddd,
+    });
+
+    this.roundText = new Text({
+      style: roundTextStyle,
+      text: `0/${this.gameMap!.waves!.length}`,
+    });
+
+    this.roundText.y = 185;
+    this.roundText.x = 4;
+
+    this.stage.addChild(this.roundText);
+
+    const moneyTextStyle = new TextStyle({
+      fontSize: 10,
+      fill: 0x78521a,
+    });
+
+    this.moneyText = new Text({
+      style: moneyTextStyle,
+      text: `${this.START_MONEY_AMOUNT} $`,
+    });
+
+    this.moneyText.y = 172;
+    this.moneyText.x = 4;
+    this.stage.addChild(this.moneyText);
+  }
+
   loseHealth(damage: number) {
     let currentHealth = this.health;
     currentHealth -= damage;
@@ -363,7 +403,38 @@ export class Game {
     }
 
     this.health = Math.max(0, currentHealth);
-    this.healthText!.text = this.health;
+    this.healthText!.text = this.health + "❤️";
+  }
+
+  setRound(round: number, totalRounds: number) {
+    if (this.roundText) {
+      this.roundText.text = `${round}/${totalRounds}`;
+    }
+  }
+
+  getCountOfActorOfType(type: string): number {
+    return Array.from(this.actors).filter(([_, actor]) => {
+      return actor.type === type;
+    }).length;
+  }
+
+  /**
+   * Returns if you can afford the purchase or not, if you can substracts the amount from the money
+   */
+  spendMoney(amount: number) {
+    if (this.money - amount < 0) {
+      return false;
+    } else {
+      console.log(`spend money ${this.money}`);
+      this.money -= amount;
+      this.moneyText!.text = `${this.money} $`;
+      return true;
+    }
+  }
+
+  earnMoney(amount: number) {
+    this.money += amount;
+    this.moneyText!.text = `${this.money} $`;
   }
 
   getWidth(): number {

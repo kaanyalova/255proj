@@ -49,11 +49,11 @@ export class GameMap extends Actor {
   private waveTimer: number = 0;
 
   override async init(game: Game) {
-    console.log("init map");
+    game.setRound(10, 100);
 
     await this.loadOverlay();
     await this.loadDisplay(game);
-    await this.loadNodes();
+    await this.loadNodes(game);
     await this.loadWaves();
   }
 
@@ -86,7 +86,7 @@ export class GameMap extends Actor {
     this.addChild(this.mapSprite);
   }
 
-  private async loadNodes() {
+  private async loadNodes(game: Game) {
     const nodesReq = await fetch("/game/assets/map_nodes.json");
     const nodes: MapNodes = await nodesReq.json();
     this.mapNodes = nodes;
@@ -127,6 +127,10 @@ export class GameMap extends Actor {
     const roundCount = this.waves!.length;
 
     if (this.roundIdx >= roundCount) {
+      if (game.getCountOfActorOfType("Enemy") === 0) {
+        alert("You win");
+      }
+
       return;
     }
 
@@ -135,6 +139,7 @@ export class GameMap extends Actor {
 
     if (this.waveIdx >= waveCount) {
       this.roundIdx += 1;
+      game.setRound(this.roundIdx + 1, Math.max(this.roundIdx + 1, roundCount));
       this.waveIdx = 0;
       console.log(`start round idx ${this.roundIdx}`);
     }

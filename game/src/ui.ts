@@ -15,6 +15,7 @@ class TowerPorait extends Actor {
   isDragging: boolean = false;
   mouseOffsetX: number = 0;
   mouseOffsetY: number = 0;
+  price: number;
 
   private spawnTower;
 
@@ -23,11 +24,13 @@ class TowerPorait extends Actor {
     towerSpawn: (game: Game, posX: number, posY: number) => Promise<Actor>,
     towerWidth: number,
     towerHeight: number,
-    sprite: Container
+    sprite: Container,
+    price: number
   ) {
     super(game);
     this.spawnTower = towerSpawn;
     this.sprite = sprite;
+    this.price = price;
   }
 
   tick(game: Game, deltaTime: number): void {
@@ -84,12 +87,14 @@ class TowerPorait extends Actor {
           valid: vaildColor,
         });
 
-        const isSame =
+        const isValidPlacement =
           vaildColor.red === sampledOverlayPixel.red &&
           vaildColor.green === sampledOverlayPixel.green &&
           vaildColor.blue === sampledOverlayPixel.blue;
 
-        if (isSame) {
+        const canAfford = game.spendMoney(this.price);
+
+        if (isValidPlacement && canAfford) {
           const tower = await this.spawnTower(
             game,
             game.controls.mouseX,
@@ -141,7 +146,14 @@ export class GameUI extends Actor {
       .rect(0, 0, TOWER_PORTRAIT_WIDTH, TOWER_PORTRAIT_HEIGHT)
       .fill(0x0288d1);
 
-    const portrait = new TowerPorait(game, spawnGatlingGunner, 12, 12, sprite);
+    const portrait = new TowerPorait(
+      game,
+      spawnGatlingGunner,
+      12,
+      12,
+      sprite,
+      10
+    );
     game.registerActor(portrait);
     this.addChild(portrait);
     portrait.x = 0;
@@ -155,7 +167,7 @@ export class GameUI extends Actor {
       .rect(0, 0, TOWER_PORTRAIT_WIDTH, TOWER_PORTRAIT_HEIGHT)
       .fill(0x78521a);
 
-    const portrait2 = new TowerPorait(game, spawnSeeking, 12, 12, sprite2);
+    const portrait2 = new TowerPorait(game, spawnSeeking, 12, 12, sprite2, 20);
     game.registerActor(portrait2);
     this.addChild(portrait2);
     portrait2.x = 0;
