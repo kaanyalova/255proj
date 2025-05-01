@@ -104,7 +104,7 @@ export class Tack extends Actor {
         });
       }
 
-      this.timer = 5;
+      this.timer = 10;
     }
 
     this.timer -= deltaTime;
