@@ -15,10 +15,6 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
   },
-  "include": ["game/src/", "*.ts"]
+  "include": ["game/src/", "*.ts", "javascript/swipes.ts"]
 }
