@@ -95,7 +95,8 @@ export class GameMap extends Actor {
 
   getOverlayPixel(x: number, y: number): Color {
     if (this.overlayBytes) {
-      const pixelOffset = (y * this.overlayWidth!! + this.overlayHeight!!) * 4; // each pixel is 4 bytes
+      const pixelOffset =
+        (Math.round(y) * this.overlayWidth!! + Math.round(x)) * 4; // each pixel is 4 bytes
       const pixel: Color = {
         red: this.overlayBytes[pixelOffset + 0],
         green: this.overlayBytes[pixelOffset + 1],

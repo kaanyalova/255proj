@@ -65,6 +65,8 @@ export class Game {
   controls: Controls = newControls();
   private recentCollisions: Set<string> = new Set();
   private healthText: Text | undefined;
+  private money: number = 50;
+  private moneyText: Text | undefined;
 
   health = 100;
 
