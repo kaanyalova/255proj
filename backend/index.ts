@@ -39,7 +39,7 @@ db.exec(`
   `);
 
 Bun.serve({
-  port: 42069,
+  port: 11223,
   routes: {
     // List posts
     "/api/new_user": {
