@@ -31,15 +31,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     $(".login-button").hide();
   }
-  const signInButton = document.getElementById("signInButton");
+});
 
-  signInButton.addEventListener("click", function () {
-    const selectedMajor = document.getElementById("major").value;
-
-    if (selectedMajor === "CTIS") {
-      window.location.href = "/swipes";
-    } else {
-      alert("Only CTIS students can continue!");
-    }
-  });
+$("#signInButton").on("click", () => {
+  const selectedMajor = $("#major").val();
+  if (selectedMajor === "CTIS") {
+    window.location.href = "/swipes";
+  } else {
+    alert("Only CTIS students can continue!");
+  }
 });
