@@ -92,15 +92,16 @@ class TowerPorait extends Actor {
           vaildColor.green === sampledOverlayPixel.green &&
           vaildColor.blue === sampledOverlayPixel.blue;
 
-        const canAfford = game.spendMoney(this.price);
-
-        if (isValidPlacement && canAfford) {
-          const tower = await this.spawnTower(
-            game,
-            game.controls.mouseX,
-            game.controls.mouseY
-          );
-          game.insertActorToStage(tower);
+        if (isValidPlacement) {
+          const canAfford = game.spendMoney(this.price);
+          if (canAfford) {
+            const tower = await this.spawnTower(
+              game,
+              game.controls.mouseX,
+              game.controls.mouseY
+            );
+            game.insertActorToStage(tower);
+          }
         } else {
           console.log({ valid: vaildColor, sampled: sampledOverlayPixel });
         }
@@ -114,7 +115,7 @@ class TowerPorait extends Actor {
 
 export class GameUI extends Actor {
   private background: Graphics | undefined;
-  private protrait: TowerPorait | undefined;
+  private portrait: TowerPorait | undefined;
 
   constructor(game: Game) {
     super(game);
@@ -172,5 +173,11 @@ export class GameUI extends Actor {
     this.addChild(portrait2);
     portrait2.x = 0;
     portrait2.y = 28;
+  }
+}
+
+export class UpgradeUI extends Actor {
+  constructor(game: Game) {
+    super(game);
   }
 }

@@ -94,11 +94,13 @@
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(
-      90deg,
-      rgb(247, 164, 164) 25%,
-      rgb(164, 231, 178) 75%
-    );
+    backdrop-filter: blur(15px);
+    background-color: rgba(
+      201,
+      201,
+      201,
+      0.4
+    ) !important; /*where is the color coming from  */
     font-family: Arial, Helvetica, sans-serif;
     user-select: none;
   }

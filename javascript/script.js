@@ -1,8 +1,36 @@
 import { profiles } from "./data";
+import { eraseCookie, getCookie } from "./utils";
+import $ from "jquery";
 
 let currentIndex = 0; // Which profile we are currently showing
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async () => {
+  if (getCookie("self-id")) {
+    const accountReq = await fetch(`/api/get_user/${getCookie("self-id")}`);
+    const account = await accountReq.json();
+    const accountHTML = /*html*/ `${account.name}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="24px"
+        viewBox="0 -960 960 960"
+        width="24px"
+        fill="#000000"
+        style="margin: 4px"
+      >
+        <path
+          d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"
+        />
+      </svg>`;
+
+    $(".create-account-button")
+      .html(accountHTML)
+      .on("click", (e) => {
+        e.preventDefault();
+        window.location.href = "/profile";
+      });
+
+    $(".login-button").hide();
+  }
   const signInButton = document.getElementById("signInButton");
 
   signInButton.addEventListener("click", function () {
@@ -10,53 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (selectedMajor === "CTIS") {
       window.location.href = "/swipes";
-
-      document.querySelector(".selection").style.display = "none"; // Hide the form part
-      document.getElementById("profiles-container").style.display = "flex"; // Show profiles container
-      showProfile(currentIndex);
     } else {
       alert("Only CTIS students can continue!");
     }
   });
 });
-
-function showProfile(index) {
-  const container = document.getElementById("profiles-container");
-  container.innerHTML = ""; // clear previous profile
-
-  if (index >= profiles.length) {
-    container.innerHTML = "<h2>No more profiles!</h2>";
-    return;
-  }
-
-  const profile = profiles[index];
-
-  const card = document.createElement("div");
-  card.classList.add("profile-card");
-
-  card.innerHTML = `
-        <img src="${profile.image}" alt="${profile.name} ${profile.surname}" class="profile-image">
-        <h3>${profile.name} ${profile.surname}</h3>
-        <p>Age: ${profile.age}</p>
-        <p>${profile.bio}</p>
-        <div class="buttons">
-            <button class="action-btn dislike" id="dislikeBtn">Dislike</button>
-            <button class="action-btn like" id="likeBtn">Like</button>
-        </div>
-    `;
-
-  container.appendChild(card);
-
-  // Add event listeners for buttons
-  document
-    .getElementById("likeBtn")
-    .addEventListener("click", () => nextProfile());
-  document
-    .getElementById("dislikeBtn")
-    .addEventListener("click", () => nextProfile());
-}
-
-function nextProfile() {
-  currentIndex++;
-  showProfile(currentIndex);
-}

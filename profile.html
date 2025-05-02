@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="module" src="javascript/profile.ts"></script>
+
+  <body>
+    <div class="blurred container">
+      <div class="top-part">
+        <div class="account-name" id="account-name-slot"></div>
+        <button id="log-out-button">Log Out</button>
+      </div>
+      <div class="profile">
+        <div class="account-image" id="account-image-slot"></div>
+        <div class="profile-details">
+          <ul class="profile-details-list">
+            <li class="profile-details-list-entry">
+              <span class="profile-details-list-title">Name: </span>
+              <span id="name-slot"></span>
+            </li>
+
+            <li class="profile-details-list-entry">
+              <span class="profile-details-list-title">Surname:</span>
+              <span id="surname-slot"></span>
+            </li>
+
+            <li class="profile-details-list-entry">
+              <span class="profile-details-list-title">Date of Birth:</span>
+              <span id="date-of-birth-slot"></span>
+            </li>
+            <li class="profile-details-list-entry profile-details-bio-entry">
+              <label for="bio-entry">Tell us about yourself</label>
+              <textarea name="bio-entry" id="bio-entry"></textarea>
+            </li>
+
+            <li>
+              <button id="bio-submit-button">Submit</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <style>
+    .container {
+      width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      height: 100vh;
+      color: white;
+      padding: 40px;
+    }
+
+    .top-part {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .account-name {
+      font-size: 48px;
+      margin-left: 40px;
+    }
+
+    body {
+      overflow: hidden;
+    }
+
+    .profile {
+      margin-top: 40px;
+      display: flex;
+      margin: 40px;
+    }
+
+    .profile-details {
+      margin: 20px;
+      display: flex;
+    }
+
+    .profile-details-list {
+      list-style: none;
+    }
+
+    .profile-details-list-entry {
+      font-size: large;
+      margin: 10px;
+    }
+
+    .profile-details-list-title {
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    #log-out-button {
+      background-color: red;
+      transition: background-color 0.4s;
+      border: none;
+      padding: 20px;
+      color: white;
+      font-size: 20px;
+      border-radius: 10px;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      cursor: pointer;
+    }
+
+    #log-out-button:hover {
+      background-color: color-mix(in srgb, red 80%, black 20%);
+    }
+
+    .profile-details-bio-entry {
+      display: flex;
+      flex-direction: column;
+      margin-top: 30px;
+    }
+
+    #bio-entry {
+      width: 600px;
+      height: 200px;
+      margin-top: 10px;
+      backdrop-filter: blur(15px);
+      background-color: rgba(0, 0, 0, 0.4) !important;
+      outline: none;
+      border: none;
+      color: white;
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    #bio-entry:focus {
+      border: 1px solid gray;
+    }
+
+    #bio-submit-button {
+      width: 200px;
+      height: 50px;
+      background-color: #0077cc;
+      margin-left: 420px !important;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 10px;
+      transition: background-color 0.4s;
+      cursor: pointer;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      font-size: 16px;
+    }
+
+    #bio-submit-button:hover {
+      background-color: color-mix(in srgb, #0077cc 80%, black 20%) !important;
+    }
+  </style>
+</html>

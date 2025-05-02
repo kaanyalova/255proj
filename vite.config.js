@@ -12,7 +12,14 @@ export default defineConfig({
         game: resolve(__dirname, "game/index.html"),
         form: resolve(__dirname, "form.html"),
         swipes: resolve(__dirname, "swipes.html"),
+        profile: resolve(__dirname, "profile.html"),
+        login: resolve(__dirname, "login.html"),
       },
+    },
+  },
+  server: {
+    proxy: {
+      "/api": "http://localhost:42069 ",
     },
   },
 });

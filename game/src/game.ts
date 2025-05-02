@@ -50,7 +50,7 @@ function newControls(): Controls {
 
 export enum CollisionLayer {
   BULLETS,
-  // layer containing towers and enemies
+  // layer containing towers and enemiesmone
   TOWER_RAYCASTS,
 }
 
@@ -67,7 +67,7 @@ export class Game {
   controls: Controls = newControls();
   private recentCollisions: Set<string> = new Set();
   private healthText: Text | undefined;
-  private money: number = 50;
+  money: number = 50;
   private moneyText: Text | undefined;
   private roundText: Text | undefined;
   health: number = 100;

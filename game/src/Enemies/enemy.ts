@@ -183,4 +183,6 @@ export class Enemy extends Actor {
     game.removeActorFromStage(this);
     game.loseHealth(this.maxHealth);
   }
+
+  onUpgrade() {}
 }
