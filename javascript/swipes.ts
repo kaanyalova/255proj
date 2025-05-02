@@ -18,7 +18,7 @@ function reset(animation: JSAnimation, draggable: Draggable) {
 
 let index = 0;
 let users: Array<User>;
-let selfUserId: string;
+let selfUserId: string | undefined;
 
 async function onSwipe(user: User, userCount: number) {
   let el = document.getElementById("profile-slot");
