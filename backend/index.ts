@@ -13,6 +13,7 @@ type User = {
 export type NewUserForm = {
   name: string;
   surname: string;
+  email: string;
   birth_date: string;
   profile_image: File;
   id_card_image: File;
@@ -22,7 +23,7 @@ export type NewUserForm = {
 const db = new Database("users.db");
 db.exec(`
   CREATE TABLE IF NOT EXISTS User (
-  id TEXT PRIMARY KEY, 
+  id TEXT PRIMARY KEY,
   name TEXT NOT NULL,
   surname TEXT NOT NULL,
   birth_date INTEGER NOT NULL,
@@ -35,7 +36,7 @@ db.exec(`
   CREATE TABLE IF NOT EXISTS Session (
   id TEXT NOT NULL,
   key TEXT NOT NULL
-  ) 
+  )
   `);
 
 Bun.serve({
@@ -48,6 +49,7 @@ Bun.serve({
         const newUserForm: NewUserForm = {
           name: formData.get("name") as string,
           surname: formData.get("surname") as string,
+          email: formData.get("email") as string,
           birth_date: formData.get("birth_date") as string,
           id_card_image: formData.get("id_card_image") as File,
           profile_image: formData.get("profile_image") as File,
@@ -58,7 +60,7 @@ Bun.serve({
 
         const dateInUnixMilis = moment(
           newUserForm.birth_date,
-          "MM/DD/YYYY"
+          "MM/DD/YYYY",
         ).unix();
 
         const hashed = await Bun.password.hash(newUserForm.password);
@@ -68,17 +70,27 @@ Bun.serve({
           .all(newUserForm.name, newUserForm.surname);
 
         if (usersWithSameName.length > 0) {
-          return new Response("User with name already exists");
+          return new Response("User with name already exists", { status: 409 });
+        }
+
+        const bilkent_email_regex = new RegExp(
+          "^[A-Za-z0-9._%+-]+@bilkent\.edu$",
+        );
+
+        if (!newUserForm.email.match(bilkent_email_regex)) {
+          return new Response("You need an bilkent email to login", {
+            status: 401,
+          });
         }
 
         db.query(
-          "INSERT INTO User (id, name, surname, birth_date, password) VALUES (?, ?, ?, ?, ?)"
+          "INSERT INTO User (id, name, surname, birth_date, password) VALUES (?, ?, ?, ?, ?)",
         ).run(
           userId,
           newUserForm.name,
           newUserForm.surname,
           dateInUnixMilis,
-          hashed
+          hashed,
         );
 
         Bun.write(`images/id_cards/${userId}.png`, newUserForm.id_card_image);
@@ -90,7 +102,7 @@ Bun.serve({
 
         db.query("INSERT INTO Session (id, key) VALUES (?, ?)").run(
           userId,
-          token
+          token,
         );
 
         cookies.set("token", token);
@@ -144,7 +156,7 @@ Bun.serve({
 
         const tokenFromDb = db
           .query(
-            "SELECT * FROM Session WHERE Session.key = ? AND Session.id = ?"
+            "SELECT * FROM Session WHERE Session.key = ? AND Session.id = ?",
           )
           .get(token, req.params.id);
 
@@ -154,7 +166,7 @@ Bun.serve({
 
         db.query("UPDATE User SET bio = ? WHERE id = ?").run(
           json.bio,
-          req.params.id
+          req.params.id,
         );
 
         return new Response("Success");
@@ -178,14 +190,14 @@ Bun.serve({
         const isCorrectPass = Bun.password.verify(password, hashFromDB);
 
         if (!isCorrectPass) {
-          return new Response("Wrong pass");
+          return new Response("Wrong pass", { status: 401 });
         }
 
         const token = crypto.randomUUID();
 
         db.query("INSERT INTO Session (id, key) VALUES (?, ?)").run(
           user.id,
-          token
+          token,
         );
 
         req.cookies.set("self-id", user.id);
