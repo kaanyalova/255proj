@@ -74,7 +74,7 @@ Bun.serve({
         }
 
         const bilkent_email_regex = new RegExp(
-          "^[A-Za-z0-9._%+-]+@bilkent\.edu$",
+          "^[A-Za-z0-9._%+-]+@bilkent\.edu.tr$",
         );
 
         if (!newUserForm.email.match(bilkent_email_regex)) {
