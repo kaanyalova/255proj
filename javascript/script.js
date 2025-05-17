@@ -30,6 +30,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
 
     $(".login-button").hide();
+  } else {
+    $("#swipes-button").hide();
   }
 });
 
