@@ -37,7 +37,7 @@
                 padding: 1rem;
             }
             .form-container {
-                background: rgba(0, 0, 0, 0.6);
+                background: rgba(0, 0, 0, 0.5);
                 backdrop-filter: blur(15px);
                 width: 100%;
                 max-width: 600px;
@@ -103,6 +103,19 @@
                 color: black !important;
             }
             .datepicker-day-button {
+                color: black !important;
+            }
+
+            .modal {
+                width: unset !important;
+            }
+
+            .select-month > input.select-dropdown.dropdown-trigger {
+                color: black !important;
+            }
+
+            .select-year > input.select-dropdown.dropdown-trigger {
+                color: black !important;
             }
         </style>
     </head>
@@ -508,7 +521,6 @@
 
         <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
         <script>
