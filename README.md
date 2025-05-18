@@ -5,9 +5,15 @@ https://bun.sh/
 
 # Dev Setup
 
+
+
+
 Start the dev server for the frontend using,
 
 ```bash
+# install the dependencies
+bun install
+
 bun run dev
 ```
 
@@ -16,6 +22,9 @@ inside of the root directory
 To run the backend run
 
 ```bash
+# install the dependencies
+bun install
+
 bun run index.ts
 ```
 
