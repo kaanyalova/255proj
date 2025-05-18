@@ -1,474 +1,527 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Create Account</title>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Create Account</title>
 
-    <!-- Google Material Icons & Materialize CSS -->
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
+        <!-- Google Material Icons & Materialize CSS -->
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+        />
 
-    <style>
-      :root {
-        --primary: #2196f3;
-        --primary-dark: #0b63c7;
-      }
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          sans-serif;
-        background: url("/images/background.jpg") no-repeat center/cover fixed;
-        color: #fff;
-      }
-      .form-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        padding: 1rem;
-      }
-      .form-container {
-        background: rgba(0, 0, 0, 0.7);
-        backdrop-filter: blur(6px);
-        width: 100%;
-        max-width: 600px;
-        height: 90vh;
-        padding: 2.5rem;
-        border-radius: 1rem;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-        overflow-y: auto;
-      }
-      h5 {
-        font-weight: 600;
-        margin-bottom: 2rem;
-      }
-      .input-field input,
-      .input-field select {
-        color: #fff;
-      }
-      .input-field label.active {
-        color: var(--primary) !important;
-      }
-      .input-field input:focus {
-        border-bottom: 2px solid var(--primary) !important;
-        box-shadow: 0 1px 0 0 var(--primary) !important;
-      }
-      select {
-        background: transparent;
-        border: 1px solid #bbb;
-        border-radius: 6px;
-        padding: 0.5rem;
-      }
-      .btn-primary {
-        background: var(--primary);
-        width: 100%;
-        border-radius: 8px;
-        font-weight: 600;
-        transition: background 0.25s;
-      }
-      .btn-primary:hover {
-        background: var(--primary-dark);
-      }
-      .btn-secondary {
-        background: #424242;
-        width: 100%;
-        border-radius: 8px;
-        font-weight: 600;
-        margin-top: 1rem;
-      }
-      .helper-text {
-        color: #ddd !important;
-        font-weight: 500;
-      }
-      .red-text {
-        color: #ff5252 !important;
-        margin-top: 1rem;
-        font-weight: 600;
-      }
-      .ui-datepicker {
-        font-family: inherit;
-        font-size: 0.9rem;
-        border-radius: 8px;
-      }
-      .dropdown-content li > span {
-        color: black !important;
-      }
-      .datepicker-day-button {
-      }
-    </style>
-  </head>
-  <body>
-    <div class="form-wrapper">
-      <div class="form-container z-depth-5">
-        <h5 class="center-align">Create Your Profile</h5>
-        <form
-          id="profileForm"
-          action="/api/new_user"
-          method="post"
-          enctype="multipart/form-data"
-        >
-          <!-- Name -->
-          <div class="input-field">
-            <input
-              id="name"
-              name="name"
-              type="text"
-              pattern="[A-Za-z]{1,15}"
-              required
-              autocomplete="off"
-            />
-            <label for="name">Name</label>
-            <span
-              class="helper-text"
-              data-error="Only letters, max 15 characters"
-            ></span>
-          </div>
+        <style>
+            :root {
+                --primary: #2196f3;
+                --primary-dark: #0b63c7;
+            }
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                    Roboto, sans-serif;
+                background: url('/images/background.jpg') no-repeat center/cover
+                    fixed;
+                color: #fff;
+            }
+            .form-wrapper {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                padding: 1rem;
+            }
+            .form-container {
+                background: rgba(0, 0, 0, 0.6);
+                backdrop-filter: blur(15px);
+                width: 100%;
+                max-width: 600px;
+                height: 90vh;
+                padding: 2.5rem;
+                border-radius: 1rem;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+                overflow-y: auto;
+            }
+            h5 {
+                font-weight: 600;
+                margin-bottom: 2rem;
+            }
+            .input-field input,
+            .input-field select {
+                color: #fff;
+            }
+            .input-field label.active {
+                color: var(--primary) !important;
+            }
+            .input-field input:focus {
+                border-bottom: 2px solid var(--primary) !important;
+                box-shadow: 0 1px 0 0 var(--primary) !important;
+            }
+            select {
+                background: transparent;
+                border: 1px solid #bbb;
+                border-radius: 6px;
+                padding: 0.5rem;
+            }
+            .btn-primary {
+                background: var(--primary);
+                width: 100%;
+                border-radius: 8px;
+                font-weight: 600;
+                transition: background 0.25s;
+            }
+            .btn-primary:hover {
+                background: var(--primary-dark);
+            }
+            .btn-secondary {
+                background: #424242;
+                width: 100%;
+                border-radius: 8px;
+                font-weight: 600;
+                margin-top: 1rem;
+            }
+            .helper-text {
+                color: #ddd !important;
+                font-weight: 500;
+            }
+            .red-text {
+                color: #ff5252 !important;
+                margin-top: 1rem;
+                font-weight: 600;
+            }
+            .ui-datepicker {
+                font-family: inherit;
+                font-size: 0.9rem;
+                border-radius: 8px;
+            }
+            .dropdown-content li > span {
+                color: black !important;
+            }
+            .datepicker-day-button {
+            }
+        </style>
+    </head>
+    <body>
+        <div class="form-wrapper">
+            <div class="form-container z-depth-5">
+                <h5 class="center-align">Create Your Profile</h5>
+                <form
+                    id="profileForm"
+                    action="/api/new_user"
+                    method="post"
+                    enctype="multipart/form-data"
+                >
+                    <!-- Name -->
+                    <div class="input-field">
+                        <input
+                            id="name"
+                            name="name"
+                            type="text"
+                            pattern="[A-Za-z]{1,15}"
+                            required
+                            autocomplete="off"
+                        />
+                        <label for="name">Name</label>
+                        <span
+                            class="helper-text"
+                            data-error="Only letters, max 15 characters"
+                        ></span>
+                    </div>
 
-          <!-- Surname -->
-          <div class="input-field">
-            <input
-              id="surname"
-              name="surname"
-              type="text"
-              pattern="[A-Za-z]{1,15}"
-              required
-              autocomplete="off"
-            />
-            <label for="surname">Surname</label>
-            <span
-              class="helper-text"
-              data-error="Only letters, max 15 characters"
-            ></span>
-          </div>
+                    <!-- Surname -->
+                    <div class="input-field">
+                        <input
+                            id="surname"
+                            name="surname"
+                            type="text"
+                            pattern="[A-Za-z]{1,15}"
+                            required
+                            autocomplete="off"
+                        />
+                        <label for="surname">Surname</label>
+                        <span
+                            class="helper-text"
+                            data-error="Only letters, max 15 characters"
+                        ></span>
+                    </div>
 
-          <!-- Email -->
-          <div class="input-field">
-            <input
-              id="email"
-              name="email"
-              type="email"
-              pattern="^[A-Za-z0-9._%+-]+@ug\.bilkent\.edu\.tr$"
-              required
-              autocomplete="off"
-            />
-            <label for="email">Bilkent E-mail</label>
-            <span
-              class="helper-text"
-              data-error="Must be @ug.bilkent.edu.tr address"
-            ></span>
-          </div>
+                    <!-- Email -->
+                    <div class="input-field">
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            pattern="^[A-Za-z0-9._%+-]+@ug\.bilkent\.edu\.tr$"
+                            required
+                            autocomplete="off"
+                        />
+                        <label for="email">Bilkent E-mail</label>
+                        <span
+                            class="helper-text"
+                            data-error="Must be @ug.bilkent.edu.tr address"
+                        ></span>
+                    </div>
 
-          <!-- Birth Date -->
-          <div class="input-field">
-            <input
-              id="birth_date"
-              name="birth_date"
-              type="text"
-              required
-              autocomplete="off"
-            />
-            <label for="birth_date">Birth Date</label>
-          </div>
+                    <!-- Birth Date -->
+                    <div class="input-field">
+                        <input
+                            id="birth_date"
+                            name="birth_date"
+                            type="text"
+                            required
+                            autocomplete="off"
+                        />
+                        <label for="birth_date">Birth Date</label>
+                    </div>
 
-          <!-- Profile Photo -->
-          <div class="file-field input-field">
-            <div class="btn btn-primary" style="text-transform: none">
-              <span>Upload Profile Photo</span>
-              <input
-                type="file"
-                id="profile_image"
-                name="profile_image"
-                accept="image/png"
-              />
+                    <!-- Profile Photo -->
+                    <div class="file-field input-field">
+                        <div
+                            class="btn btn-primary"
+                            style="text-transform: none"
+                        >
+                            <span>Upload Profile Photo</span>
+                            <input
+                                type="file"
+                                id="profile_image"
+                                name="profile_image"
+                                accept="image/png"
+                            />
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input
+                                class="file-path validate"
+                                type="text"
+                                placeholder="Upload your profile image"
+                                readonly
+                            />
+                        </div>
+                    </div>
+
+                    <!-- Major Select -->
+                    <div class="input-field">
+                        <select id="major" name="major" required>
+                            <option value="" disabled selected>
+                                Choose Major
+                            </option>
+                            <!-- Full list of majors -->
+                            <option value="PREP">Preparation Year</option>
+                            <option value="ACC">
+                                ACC – Accounting Information Systems (School of
+                                Applied Languages)
+                            </option>
+                            <option value="ADA">
+                                ADA – Art, Design and Architecture Courses
+                                (Faculty of Art, Design, and Architecture)
+                            </option>
+                            <option value="AMER">
+                                AMER – American Culture and Literature (Faculty
+                                of Humanities and Letters)
+                            </option>
+                            <option value="ARCH">
+                                ARCH – Architecture (Faculty of Art, Design, and
+                                Architecture)
+                            </option>
+                            <option value="BTE">
+                                BTE – Curriculum and Instruction with Teaching
+                                Certificate (Faculty of Education)
+                            </option>
+                            <option value="CHEM">
+                                CHEM – Chemistry (Faculty of Science)
+                            </option>
+                            <option value="CI">
+                                CI – Curriculum and Instruction (Faculty of
+                                Education)
+                            </option>
+                            <option value="CINT">
+                                CINT – Translation and Interpretation (Faculty
+                                of Humanities and Letters)
+                            </option>
+                            <option value="COMD">
+                                COMD – Communication and Design (Faculty of Art,
+                                Design, and Architecture)
+                            </option>
+                            <option value="CS">
+                                CS – Computer Engineering (Faculty of
+                                Engineering)
+                            </option>
+                            <option value="CTE">
+                                CTE – Computer and Instructional Technology
+                                Teacher Education (Faculty of Education)
+                            </option>
+                            <option value="CTIS">
+                                CTIS – Information Systems and Technologies
+                                (Faculty of Applied Sciences)
+                            </option>
+                            <option value="ECON">
+                                ECON – Economics (Faculty of Economics,
+                                Administrative, and Social Sciences)
+                            </option>
+                            <option value="EDEB">
+                                EDEB – Turkish Literature (Faculty of Humanities
+                                and Letters)
+                            </option>
+                            <option value="EDU">
+                                EDU – Basic Education (Faculty of Education)
+                            </option>
+                            <option value="EEE">
+                                EEE – Electrical and Electronics Engineering
+                                (Faculty of Engineering)
+                            </option>
+                            <option value="ELIT">
+                                ELIT – English Language and Literature (Faculty
+                                of Humanities and Letters)
+                            </option>
+                            <option value="ELS">
+                                ELS – Academic English Program (Rectorate)
+                            </option>
+                            <option value="EMBA">
+                                EMBA – Management (Faculty of Business
+                                Administration)
+                            </option>
+                            <option value="ENG">
+                                ENG – Academic English Program (Rectorate)
+                            </option>
+                            <option value="ETE">
+                                ETE – Curriculum and Instruction with Teaching
+                                Certificate (Faculty of Education)
+                            </option>
+                            <option value="FA">
+                                FA – Fine Arts (Faculty of Art, Design, and
+                                Architecture)
+                            </option>
+                            <option value="FRP">
+                                FRP – Translation and Interpretation (Faculty of
+                                Humanities and Letters)
+                            </option>
+                            <option value="GE">
+                                GE – General Education Courses (Rectorate)
+                            </option>
+                            <option value="GRA">
+                                GRA – Graphic Design (Faculty of Art, Design,
+                                and Architecture)
+                            </option>
+                            <option value="HART">
+                                HART – Archaeology (Faculty of Humanities and
+                                Letters)
+                            </option>
+                            <option value="HCIV">
+                                HCIV – History (Faculty of Economics,
+                                Administrative, and Social Sciences)
+                            </option>
+                            <option value="HIST">
+                                HIST – History (Faculty of Economics,
+                                Administrative, and Social Sciences)
+                            </option>
+                            <option value="HUM">
+                                HUM – Program in Cultures, Civilizations, and
+                                Ideas (Faculty of Humanities and Letters)
+                            </option>
+                            <option value="IAED">
+                                IAED – Interior Architecture and Environmental
+                                Design (Faculty of Art, Design, and
+                                Architecture)
+                            </option>
+                            <option value="IE">
+                                IE – Industrial Engineering (Faculty of
+                                Engineering)
+                            </option>
+                            <option value="IR">
+                                IR – International Relations (Faculty of
+                                Economics, Administrative, and Social Sciences)
+                            </option>
+                            <option value="LAUD">
+                                LAUD – Urban Design and Landscape Architecture
+                                (Faculty of Art, Design, and Architecture)
+                            </option>
+                            <option value="LAW">
+                                LAW – Law (Faculty of Law)
+                            </option>
+                            <option value="LNG">
+                                LNG – Second Foreign Language Program
+                                (Rectorate)
+                            </option>
+                            <option value="MAN">
+                                MAN – Management (Faculty of Business
+                                Administration)
+                            </option>
+                            <option value="MATH">
+                                MATH – Mathematics (Faculty of Science)
+                            </option>
+                            <option value="MBA">
+                                MBA – Management (Faculty of Business
+                                Administration)
+                            </option>
+                            <option value="MBG">
+                                MBG – Molecular Biology and Genetics (Faculty of
+                                Science)
+                            </option>
+                            <option value="ME">
+                                ME – Mechanical Engineering (Faculty of
+                                Engineering)
+                            </option>
+                            <option value="MSC">
+                                MSC – Music (Faculty of Music and Performing
+                                Arts)
+                            </option>
+                            <option value="MSN">
+                                MSN – Materials Science and Nanotechnology
+                                (Interdisciplinary Programs)
+                            </option>
+                            <option value="MTE">
+                                MTE – Curriculum and Instruction with Teaching
+                                Certificate (Faculty of Education)
+                            </option>
+                            <option value="MUS">
+                                MUS – Music (Faculty of Music and Performing
+                                Arts)
+                            </option>
+                            <option value="NSC">
+                                NSC – Neuroscience (Interdisciplinary Programs)
+                            </option>
+                            <option value="PHIL">
+                                PHIL – Philosophy (Faculty of Humanities and
+                                Letters)
+                            </option>
+                            <option value="PHYS">
+                                PHYS – Physics (Faculty of Science)
+                            </option>
+                            <option value="POLS">
+                                POLS – Political Science and Public
+                                Administration (Faculty of Economics,
+                                Administrative, and Social Sciences)
+                            </option>
+                            <option value="PSYC">
+                                PSYC – Psychology (Faculty of Economics,
+                                Administrative, and Social Sciences)
+                            </option>
+                            <option value="SFL">
+                                SFL – Translation and Interpretation (Faculty of
+                                Humanities and Letters)
+                            </option>
+                            <option value="SOC">
+                                SOC – Political Science and Public
+                                Administration (Faculty of Economics,
+                                Administrative, and Social Sciences)
+                            </option>
+                            <option value="TE">
+                                TE – Curriculum and Instruction with Teaching
+                                Certificate (Faculty of Education)
+                            </option>
+                            <option value="TEFL">
+                                TEFL – Teaching English as a Foreign Language
+                                (Faculty of Education)
+                            </option>
+                            <option value="THEA">
+                                THEA – Performing Arts (Faculty of Music and
+                                Performing Arts)
+                            </option>
+                            <option value="THM">
+                                THM – Tourism and Hotel Management (Faculty of
+                                Applied Sciences)
+                            </option>
+                            <option value="THR">
+                                THR – Performing Arts (Faculty of Music and
+                                Performing Arts)
+                            </option>
+                            <option value="TRIN">
+                                TRIN – Translation and Interpretation (Faculty
+                                of Humanities and Letters)
+                            </option>
+                            <option value="TURK">
+                                TURK – Turkish Unit (Rectorate)
+                            </option>
+                        </select>
+                        <label for="major">Major</label>
+                    </div>
+
+                    <!-- Gender -->
+                    <p style="margin-top: 1rem; color: #ddd">Gender</p>
+                    <p>
+                        <label>
+                            <input
+                                name="gender"
+                                type="radio"
+                                value="male"
+                                required
+                                checked
+                            />
+                            <span>Male</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input
+                                name="gender"
+                                type="radio"
+                                value="female"
+                                required
+                            />
+                            <span>Female</span>
+                        </label>
+                    </p>
+
+                    <!-- Password -->
+                    <div class="input-field">
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            required
+                            autocomplete="off"
+                        />
+                        <label for="password">Password</label>
+                    </div>
+
+                    <!-- Error message placeholder -->
+                    <p
+                        class="red-text center-align"
+                        id="idError"
+                        style="display: none"
+                    >
+                        Please upload 1 Bilkent ID photo.
+                    </p>
+
+                    <!-- Submit -->
+                    <button
+                        type="submit"
+                        class="btn btn-primary waves-effect waves-light"
+                    >
+                        Submit <i class="material-icons right">send</i>
+                    </button>
+                </form>
+
+                <!-- Back button -->
+                <a
+                    href="index.html"
+                    class="btn btn-secondary waves-effect waves-light"
+                    ><i class="material-icons left">arrow_back</i>Back to
+                    Home</a
+                >
             </div>
-            <div class="file-path-wrapper">
-              <input
-                class="file-path validate"
-                type="text"
-                placeholder="Upload your profile image"
-                readonly
-              />
-            </div>
-          </div>
+        </div>
 
-          <!-- Major Select -->
-          <div class="input-field">
-            <select id="major" name="major" required>
-              <option value="" disabled selected>Choose Major</option>
-              <!-- Full list of majors -->
-              <option value="PREP">Preparation Year</option>
-              <option value="ACC">
-                ACC – Accounting Information Systems (School of Applied
-                Languages)
-              </option>
-              <option value="ADA">
-                ADA – Art, Design and Architecture Courses (Faculty of Art,
-                Design, and Architecture)
-              </option>
-              <option value="AMER">
-                AMER – American Culture and Literature (Faculty of Humanities
-                and Letters)
-              </option>
-              <option value="ARCH">
-                ARCH – Architecture (Faculty of Art, Design, and Architecture)
-              </option>
-              <option value="BTE">
-                BTE – Curriculum and Instruction with Teaching Certificate
-                (Faculty of Education)
-              </option>
-              <option value="CHEM">
-                CHEM – Chemistry (Faculty of Science)
-              </option>
-              <option value="CI">
-                CI – Curriculum and Instruction (Faculty of Education)
-              </option>
-              <option value="CINT">
-                CINT – Translation and Interpretation (Faculty of Humanities and
-                Letters)
-              </option>
-              <option value="COMD">
-                COMD – Communication and Design (Faculty of Art, Design, and
-                Architecture)
-              </option>
-              <option value="CS">
-                CS – Computer Engineering (Faculty of Engineering)
-              </option>
-              <option value="CTE">
-                CTE – Computer and Instructional Technology Teacher Education
-                (Faculty of Education)
-              </option>
-              <option value="CTIS">
-                CTIS – Information Systems and Technologies (Faculty of Applied
-                Sciences)
-              </option>
-              <option value="ECON">
-                ECON – Economics (Faculty of Economics, Administrative, and
-                Social Sciences)
-              </option>
-              <option value="EDEB">
-                EDEB – Turkish Literature (Faculty of Humanities and Letters)
-              </option>
-              <option value="EDU">
-                EDU – Basic Education (Faculty of Education)
-              </option>
-              <option value="EEE">
-                EEE – Electrical and Electronics Engineering (Faculty of
-                Engineering)
-              </option>
-              <option value="ELIT">
-                ELIT – English Language and Literature (Faculty of Humanities
-                and Letters)
-              </option>
-              <option value="ELS">
-                ELS – Academic English Program (Rectorate)
-              </option>
-              <option value="EMBA">
-                EMBA – Management (Faculty of Business Administration)
-              </option>
-              <option value="ENG">
-                ENG – Academic English Program (Rectorate)
-              </option>
-              <option value="ETE">
-                ETE – Curriculum and Instruction with Teaching Certificate
-                (Faculty of Education)
-              </option>
-              <option value="FA">
-                FA – Fine Arts (Faculty of Art, Design, and Architecture)
-              </option>
-              <option value="FRP">
-                FRP – Translation and Interpretation (Faculty of Humanities and
-                Letters)
-              </option>
-              <option value="GE">
-                GE – General Education Courses (Rectorate)
-              </option>
-              <option value="GRA">
-                GRA – Graphic Design (Faculty of Art, Design, and Architecture)
-              </option>
-              <option value="HART">
-                HART – Archaeology (Faculty of Humanities and Letters)
-              </option>
-              <option value="HCIV">
-                HCIV – History (Faculty of Economics, Administrative, and Social
-                Sciences)
-              </option>
-              <option value="HIST">
-                HIST – History (Faculty of Economics, Administrative, and Social
-                Sciences)
-              </option>
-              <option value="HUM">
-                HUM – Program in Cultures, Civilizations, and Ideas (Faculty of
-                Humanities and Letters)
-              </option>
-              <option value="IAED">
-                IAED – Interior Architecture and Environmental Design (Faculty
-                of Art, Design, and Architecture)
-              </option>
-              <option value="IE">
-                IE – Industrial Engineering (Faculty of Engineering)
-              </option>
-              <option value="IR">
-                IR – International Relations (Faculty of Economics,
-                Administrative, and Social Sciences)
-              </option>
-              <option value="LAUD">
-                LAUD – Urban Design and Landscape Architecture (Faculty of Art,
-                Design, and Architecture)
-              </option>
-              <option value="LAW">LAW – Law (Faculty of Law)</option>
-              <option value="LNG">
-                LNG – Second Foreign Language Program (Rectorate)
-              </option>
-              <option value="MAN">
-                MAN – Management (Faculty of Business Administration)
-              </option>
-              <option value="MATH">
-                MATH – Mathematics (Faculty of Science)
-              </option>
-              <option value="MBA">
-                MBA – Management (Faculty of Business Administration)
-              </option>
-              <option value="MBG">
-                MBG – Molecular Biology and Genetics (Faculty of Science)
-              </option>
-              <option value="ME">
-                ME – Mechanical Engineering (Faculty of Engineering)
-              </option>
-              <option value="MSC">
-                MSC – Music (Faculty of Music and Performing Arts)
-              </option>
-              <option value="MSN">
-                MSN – Materials Science and Nanotechnology (Interdisciplinary
-                Programs)
-              </option>
-              <option value="MTE">
-                MTE – Curriculum and Instruction with Teaching Certificate
-                (Faculty of Education)
-              </option>
-              <option value="MUS">
-                MUS – Music (Faculty of Music and Performing Arts)
-              </option>
-              <option value="NSC">
-                NSC – Neuroscience (Interdisciplinary Programs)
-              </option>
-              <option value="PHIL">
-                PHIL – Philosophy (Faculty of Humanities and Letters)
-              </option>
-              <option value="PHYS">PHYS – Physics (Faculty of Science)</option>
-              <option value="POLS">
-                POLS – Political Science and Public Administration (Faculty of
-                Economics, Administrative, and Social Sciences)
-              </option>
-              <option value="PSYC">
-                PSYC – Psychology (Faculty of Economics, Administrative, and
-                Social Sciences)
-              </option>
-              <option value="SFL">
-                SFL – Translation and Interpretation (Faculty of Humanities and
-                Letters)
-              </option>
-              <option value="SOC">
-                SOC – Political Science and Public Administration (Faculty of
-                Economics, Administrative, and Social Sciences)
-              </option>
-              <option value="TE">
-                TE – Curriculum and Instruction with Teaching Certificate
-                (Faculty of Education)
-              </option>
-              <option value="TEFL">
-                TEFL – Teaching English as a Foreign Language (Faculty of
-                Education)
-              </option>
-              <option value="THEA">
-                THEA – Performing Arts (Faculty of Music and Performing Arts)
-              </option>
-              <option value="THM">
-                THM – Tourism and Hotel Management (Faculty of Applied Sciences)
-              </option>
-              <option value="THR">
-                THR – Performing Arts (Faculty of Music and Performing Arts)
-              </option>
-              <option value="TRIN">
-                TRIN – Translation and Interpretation (Faculty of Humanities and
-                Letters)
-              </option>
-              <option value="TURK">TURK – Turkish Unit (Rectorate)</option>
-            </select>
-            <label for="major">Major</label>
-          </div>
+        <!-- Scripts -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-          <!-- Gender -->
-          <p style="margin-top: 1rem; color: #ddd">Gender</p>
-          <p>
-            <label>
-              <input name="gender" type="radio" value="male" required checked />
-              <span>Male</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input name="gender" type="radio" value="female" required />
-              <span>Female</span>
-            </label>
-          </p>
-
-          <!-- Password -->
-          <div class="input-field">
-            <input
-              id="password"
-              name="password"
-              type="password"
-              required
-              autocomplete="off"
-            />
-            <label for="password">Password</label>
-          </div>
-
-          <!-- Error message placeholder -->
-          <p class="red-text center-align" id="idError" style="display: none">
-            Please upload 1 Bilkent ID photo.
-          </p>
-
-          <!-- Submit -->
-          <button
-            type="submit"
-            class="btn btn-primary waves-effect waves-light"
-          >
-            Submit <i class="material-icons right">send</i>
-          </button>
-        </form>
-
-        <!-- Back button -->
-        <a href="index.html" class="btn btn-secondary waves-effect waves-light"
-          ><i class="material-icons left">arrow_back</i>Back to Home</a
-        >
-      </div>
-    </div>
-
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-    <script>
-      $(document).ready(function () {
-        $("select").formSelect();
-        $("#birth_date").datepicker({
-          defaultDate: new Date(2005, 2, 29),
-          changeMonth: true,
-          changeYear: true,
-          yearRange: "1900:2025",
-          dateFormat: "mm/dd/yy",
-        });
-      });
-    </script>
-  </body>
+        <script>
+            $(document).ready(function () {
+                $('select').formSelect();
+                $('#birth_date').datepicker({
+                    defaultDate: new Date(2005, 2, 29),
+                    changeMonth: true,
+                    changeYear: true,
+                    yearRange: '1900:2025',
+                    dateFormat: 'mm/dd/yy',
+                });
+            });
+        </script>
+    </body>
 </html>
