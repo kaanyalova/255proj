@@ -1,14 +1,14 @@
-import { profiles } from "./data";
-import { eraseCookie, getCookie } from "./utils";
-import $ from "jquery";
+import { profiles } from './data';
+import { eraseCookie, getCookie } from './utils';
+import $ from 'jquery';
 
 let currentIndex = 0; // Which profile we are currently showing
 
-document.addEventListener("DOMContentLoaded", async () => {
-  if (getCookie("self-id")) {
-    const accountReq = await fetch(`/api/get_user/${getCookie("self-id")}`);
-    const account = await accountReq.json();
-    const accountHTML = /*html*/ `${account.name}
+document.addEventListener('DOMContentLoaded', async () => {
+    if (getCookie('self-id')) {
+        const accountReq = await fetch(`/api/get_user/${getCookie('self-id')}`);
+        const account = await accountReq.json();
+        const accountHTML = /*html*/ `${account.name}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         height="24px"
@@ -22,24 +22,24 @@ document.addEventListener("DOMContentLoaded", async () => {
         />
       </svg>`;
 
-    $(".create-account-button")
-      .html(accountHTML)
-      .on("click", (e) => {
-        e.preventDefault();
-        window.location.href = "/profile";
-      });
+        $('.create-account-button')
+            .html(accountHTML)
+            .on('click', (e) => {
+                e.preventDefault();
+                window.location.href = '/profile';
+            });
 
-    $(".login-button").hide();
-  } else {
-    $("#swipes-button").hide();
-  }
+        $('.login-button').hide();
+    } else {
+        $('#swipes-button').hide();
+    }
 });
 
-$("#signInButton").on("click", () => {
-  const selectedMajor = $("#major").val();
-  if (selectedMajor === "CTIS") {
-    window.location.href = "/swipes";
-  } else {
-    alert("Only CTIS students can continue!");
-  }
+$('#signInButton').on('click', () => {
+    const selectedMajor = $('#major').val();
+    if (selectedMajor === 'CTIS') {
+        window.location.href = '/swipes';
+    } else {
+        alert('Only CTIS students can continue!');
+    }
 });

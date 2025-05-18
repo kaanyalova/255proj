@@ -2,25 +2,27 @@ import { Application, Assets, Sprite } from 'pixi.js';
 import { Game } from './game';
 
 export async function initPixi(scale: number) {
-	const canvasDiv = document.getElementsByClassName('canvas')[0] as HTMLElement;
+    const canvasDiv = document.getElementsByClassName(
+        'canvas'
+    )[0] as HTMLElement;
 
-	// Create a new application
-	const app = new Application();
+    // Create a new application
+    const app = new Application();
 
-	// Initialize the application
-	await app.init({ background: '#1099bb', resizeTo: canvasDiv });
-	canvasDiv.appendChild(app.canvas);
+    // Initialize the application
+    await app.init({ background: '#1099bb', resizeTo: canvasDiv });
+    canvasDiv.appendChild(app.canvas);
 
-	const game = new Game(app, scale);
-	await game.run();
+    const game = new Game(app, scale);
+    await game.run();
 
-	app.ticker.add((deltaTime) => {
-		game.tick(deltaTime);
-	});
+    app.ticker.add((deltaTime) => {
+        game.tick(deltaTime);
+    });
 
-	app.stage.scale = scale;
+    app.stage.scale = scale;
 
-	/*
+    /*
 	// Append the application canvas to the document body
 	canvasDiv.appendChild(app.canvas);
 
