@@ -54,7 +54,7 @@ Bun.serve({
                     password: formData.get('password') as string,
                 };
 
-                console.log(formData);
+                //console.log(formData);
 
                 const userId = crypto.randomUUID();
 
