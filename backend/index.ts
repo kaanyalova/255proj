@@ -75,11 +75,11 @@ Bun.serve({
                     });
                 }
 
-                const bilkent_email_regex = new RegExp(
+                const bilkentEmailRegex = new RegExp(
                     '^[A-Za-z0-9._%+-]+@bilkent.edu.tr$'
                 );
 
-                if (!newUserForm.email.match(bilkent_email_regex)) {
+                if (!newUserForm.email.match(bilkentEmailRegex)) {
                     return new Response('You need an bilkent email to login', {
                         status: 401,
                     });
