@@ -19,7 +19,7 @@ export default defineConfig({
     },
     server: {
         proxy: {
-            '/api': 'http://localhost:11223 ',
+            '/api': 'http://0.0.0.0:11223 ',
         },
     },
 });
