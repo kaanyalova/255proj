@@ -16,7 +16,6 @@ export type NewUserForm = {
   email: string;
   birth_date: string;
   profile_image: File;
-  id_card_image: File;
   password: string;
 };
 
@@ -51,16 +50,17 @@ Bun.serve({
           surname: formData.get("surname") as string,
           email: formData.get("email") as string,
           birth_date: formData.get("birth_date") as string,
-          id_card_image: formData.get("id_card_image") as File,
           profile_image: formData.get("profile_image") as File,
           password: formData.get("password") as string,
         };
+
+        console.log(formData);
 
         const userId = crypto.randomUUID();
 
         const dateInUnixMilis = moment(
           newUserForm.birth_date,
-          "MM/DD/YYYY",
+          "MMM DD, YYYY"
         ).unix();
 
         const hashed = await Bun.password.hash(newUserForm.password);
@@ -74,7 +74,7 @@ Bun.serve({
         }
 
         const bilkent_email_regex = new RegExp(
-          "^[A-Za-z0-9._%+-]+@bilkent\.edu.tr$",
+          "^[A-Za-z0-9._%+-]+@bilkent.edu.tr$"
         );
 
         if (!newUserForm.email.match(bilkent_email_regex)) {
@@ -84,16 +84,15 @@ Bun.serve({
         }
 
         db.query(
-          "INSERT INTO User (id, name, surname, birth_date, password) VALUES (?, ?, ?, ?, ?)",
+          "INSERT INTO User (id, name, surname, birth_date, password) VALUES (?, ?, ?, ?, ?)"
         ).run(
           userId,
           newUserForm.name,
           newUserForm.surname,
           dateInUnixMilis,
-          hashed,
+          hashed
         );
 
-        Bun.write(`images/id_cards/${userId}.png`, newUserForm.id_card_image);
         Bun.write(`images/profiles/${userId}.png`, newUserForm.profile_image);
 
         const cookies = req.cookies;
@@ -102,7 +101,7 @@ Bun.serve({
 
         db.query("INSERT INTO Session (id, key) VALUES (?, ?)").run(
           userId,
-          token,
+          token
         );
 
         cookies.set("token", token);
@@ -156,7 +155,7 @@ Bun.serve({
 
         const tokenFromDb = db
           .query(
-            "SELECT * FROM Session WHERE Session.key = ? AND Session.id = ?",
+            "SELECT * FROM Session WHERE Session.key = ? AND Session.id = ?"
           )
           .get(token, req.params.id);
 
@@ -166,7 +165,7 @@ Bun.serve({
 
         db.query("UPDATE User SET bio = ? WHERE id = ?").run(
           json.bio,
-          req.params.id,
+          req.params.id
         );
 
         return new Response("Success");
@@ -197,7 +196,7 @@ Bun.serve({
 
         db.query("INSERT INTO Session (id, key) VALUES (?, ?)").run(
           user.id,
-          token,
+          token
         );
 
         req.cookies.set("self-id", user.id);
