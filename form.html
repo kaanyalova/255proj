@@ -129,13 +129,12 @@
                     method="post"
                     enctype="multipart/form-data"
                 >
-                    <!-- Name -->
                     <div class="input-field">
                         <input
                             id="name"
                             name="name"
                             type="text"
-                            pattern="[A-Za-z]{1,15}"
+                            pattern="\p{L}*"
                             required
                             autocomplete="off"
                         />
@@ -146,13 +145,12 @@
                         ></span>
                     </div>
 
-                    <!-- Surname -->
                     <div class="input-field">
                         <input
                             id="surname"
                             name="surname"
                             type="text"
-                            pattern="[A-Za-z]{1,15}"
+                            pattern="\p{L}*"
                             required
                             autocomplete="off"
                         />
@@ -163,7 +161,6 @@
                         ></span>
                     </div>
 
-                    <!-- Email -->
                     <div class="input-field">
                         <input
                             id="email"
@@ -180,7 +177,6 @@
                         ></span>
                     </div>
 
-                    <!-- Birth Date -->
                     <div class="input-field">
                         <input
                             id="birth_date"
@@ -192,7 +188,6 @@
                         <label for="birth_date">Birth Date</label>
                     </div>
 
-                    <!-- Profile Photo -->
                     <div class="file-field input-field">
                         <div
                             class="btn btn-primary"
@@ -216,13 +211,11 @@
                         </div>
                     </div>
 
-                    <!-- Major Select -->
                     <div class="input-field">
                         <select id="major" name="major" required>
                             <option value="" disabled selected>
                                 Choose Major
                             </option>
-                            <!-- Full list of majors -->
                             <option value="PREP">Preparation Year</option>
                             <option value="ACC">
                                 ACC – Accounting Information Systems (School of
@@ -453,7 +446,6 @@
                         <label for="major">Major</label>
                     </div>
 
-                    <!-- Gender -->
                     <p style="margin-top: 1rem; color: #ddd">Gender</p>
                     <p>
                         <label>
@@ -479,7 +471,6 @@
                         </label>
                     </p>
 
-                    <!-- Password -->
                     <div class="input-field">
                         <input
                             id="password"
@@ -491,7 +482,6 @@
                         <label for="password">Password</label>
                     </div>
 
-                    <!-- Error message placeholder -->
                     <p
                         class="red-text center-align"
                         id="idError"
@@ -500,7 +490,6 @@
                         Please upload 1 Bilkent ID photo.
                     </p>
 
-                    <!-- Submit -->
                     <button
                         type="submit"
                         class="btn btn-primary waves-effect waves-light"
@@ -509,7 +498,6 @@
                     </button>
                 </form>
 
-                <!-- Back button -->
                 <a
                     href="index.html"
                     class="btn btn-secondary waves-effect waves-light"
@@ -519,7 +507,6 @@
             </div>
         </div>
 
-        <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
