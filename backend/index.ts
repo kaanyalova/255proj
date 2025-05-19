@@ -123,7 +123,7 @@ Bun.serve({
 
                 cookies.set('token', token);
 
-                return Response.redirect('/');
+                return Response.redirect('/home');
             },
         },
 
@@ -222,7 +222,7 @@ Bun.serve({
 
                 req.cookies.set('self-id', user.id);
                 req.cookies.set('token', token);
-                return Response.redirect('/');
+                return Response.redirect('/home');
             },
         },
     },

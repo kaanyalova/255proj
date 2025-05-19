@@ -14,6 +14,7 @@ export default defineConfig({
                 swipes: resolve(__dirname, 'swipes.html'),
                 profile: resolve(__dirname, 'profile.html'),
                 login: resolve(__dirname, 'login.html'),
+                home: resolve(__dirname, 'home.html'),
             },
         },
     },

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Sign In</title>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <script src="javascript/script.js" type="module"></script>
+
+    <body>
+        <header class="header-bar">
+            <div class="header-left">
+                <img class="logo" src="images/logo.png" alt="BilMatch Logo" />
+            </div>
+
+            <h1 class="title">Matching Majors, Creating Bonds</h1>
+
+            <div class="header-right">
+                <a href="login.html" class="login-button">Login</a>
+                <a href="form.html" class="create-account-button"
+                    >Create Account</a
+                >
+            </div>
+        </header>
+
+        <div class="home-page">
+            <div class="selection">
+                <div class="intro">
+                    Welcome Bilkenter! Fill out to start adventure:
+                </div>
+                <div class="form-group">
+                    <label for="major">Select Your Major</label>
+                    <select id="major">
+                        <option value="">Choose Major</option>
+                        <option value="ACC">ACC – Accounting</option>
+                        <option value="ADA">
+                            ADA – Art, Design & Animation
+                        </option>
+                        <option value="AMER">AMER – American Studies</option>
+                        <option value="ARCH">ARCH – Architecture</option>
+                        <option value="BTE">
+                            BTE – Curriculum & Instruction
+                        </option>
+                        <option value="CHEM">CHEM – Chemistry</option>
+                        <option value="CI">
+                            CI – Curriculum & Instruction
+                        </option>
+                        <option value="CINT">
+                            CINT – International Studies
+                        </option>
+                        <option value="COMD">
+                            COMD – Communication Disorders
+                        </option>
+                        <option value="CS">CS – Computer Science</option>
+                        <option value="CTE">CTE – Computer Engineering</option>
+                        <option value="CTIS">CTIS – Information Systems</option>
+                        <option value="ECON">ECON – Economics</option>
+                        <option value="EDEB">EDEB – Turkish & ELT</option>
+                        <option value="EDU">EDU – Basic Education</option>
+                        <option value="EEE">
+                            EEE – Electrical Engineering
+                        </option>
+                        <option value="ELIT">
+                            ELIT – English Language Teaching
+                        </option>
+                        <option value="ELS">ELS – Academic English</option>
+                        <option value="EMBA">EMBA – Management</option>
+                        <option value="ENG">ENG – Academic English</option>
+                        <option value="ETE">
+                            ETE – Curriculum & Instruction
+                        </option>
+                        <option value="FA">FA – Fine Arts</option>
+                        <option value="FRP">FRP – Transport & Planning</option>
+                        <option value="GE">GE – General Education</option>
+                        <option value="GRA">GRA – Graphic Design</option>
+                        <option value="HART">
+                            HART – Architectural Technology
+                        </option>
+                        <option value="HCIV">
+                            HCIV – History of Civilization
+                        </option>
+                        <option value="HIST">HIST – History</option>
+                        <option value="HUM">HUM – Program in Humanities</option>
+                        <option value="IAED">
+                            IAED – Interior Architecture & Design
+                        </option>
+                        <option value="IE">IE – Industrial Engineering</option>
+                        <option value="IELTS">
+                            IELTS – English Testing Prep
+                        </option>
+                        <option value="IR">IR – International Relations</option>
+                        <option value="LAUD">LAUD – Urban Design</option>
+                        <option value="LAW">LAW – Law</option>
+                        <option value="LNG">
+                            LNG – Second Language Teaching
+                        </option>
+                        <option value="MAN">MAN – Management</option>
+                        <option value="MATH">MATH – Mathematics</option>
+                        <option value="MBA">
+                            MBA – Business Administration
+                        </option>
+                        <option value="MBG">
+                            MBG – Molecular Biology & Genetics
+                        </option>
+                        <option value="ME">ME – Mechanical Engineering</option>
+                        <option value="MSC">MSC – Music Composition</option>
+                        <option value="MSN">
+                            MSN – Master of Science in Nursing
+                        </option>
+                        <option value="MTE">
+                            MTE – Curriculum & Instruction
+                        </option>
+                        <option value="MUS">MUS – Music Performance</option>
+                        <option value="NSC">NSC – Neuroscience</option>
+                        <option value="PHIL">PHIL – Philosophy</option>
+                        <option value="PHYS">PHYS – Physics</option>
+                        <option value="POLS">POLS – Political Science</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="year">Select Your Year</label>
+                    <select id="year">
+                        <option value="0">Choose Year</option>
+                        <option value="1">Year 1</option>
+                        <option value="2">Year 2</option>
+                        <option value="3">Year 3</option>
+                        <option value="4">Year 4</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="gender-options">Select Your Gender</label>
+
+                    <div class="gender-options" id="gender-options">
+                        <label class="gender-label">
+                            <input type="radio" name="gender" value="Male" />
+                            Male
+                        </label>
+                        <label class="gender-label">
+                            <input type="radio" name="gender" value="Female" />
+                            Female
+                        </label>
+                    </div>
+                </div>
+
+                <button class="signinButton" id="signInButton">Sign In</button>
+
+                <div class=""></div>
+            </div>
+
+            <div id="profiles-container" style="display: none"></div>
+        </div>
+
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <img
+                            src="images/home.png"
+                            alt="Home"
+                            class="nav-icon"
+                        />
+                    </a>
+                </li>
+                <li id="swipes-button">
+                    <a href="swipes.html">
+                        <img
+                            src="images/matches.png"
+                            alt="Matches"
+                            class="nav-icon"
+                        />
+                    </a>
+                </li>
+                <li id="profile-button">
+                    <a href="profile.html">
+                        <img
+                            src="images/profile.png"
+                            alt="Profile"
+                            class="nav-icon"
+                        />
+                    </a>
+                </li>
+                <li>
+                    <a href="game/">
+                        <svg
+                            class="nav-icon"
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="32px"
+                            viewBox="0 -960 960 960"
+                            width="32px"
+                            fill="#e8eaed"
+                        >
+                            <path
+                                d="M182-200q-51 0-79-35.5T82-322l42-300q9-60 53.5-99T282-760h396q60 0 104.5 39t53.5 99l42 300q7 51-21 86.5T778-200q-21 0-39-7.5T706-230l-90-90H344l-90 90q-15 15-33 22.5t-39 7.5Zm16-86 114-114h336l114 114q2 2 16 6 11 0 17.5-6.5T800-304l-44-308q-4-29-26-48.5T678-680H282q-30 0-52 19.5T204-612l-44 308q-2 11 4.5 17.5T182-280q2 0 16-6Zm482-154q17 0 28.5-11.5T720-480q0-17-11.5-28.5T680-520q-17 0-28.5 11.5T640-480q0 17 11.5 28.5T680-440Zm-80-120q17 0 28.5-11.5T640-600q0-17-11.5-28.5T600-640q-17 0-28.5 11.5T560-600q0 17 11.5 28.5T600-560ZM310-440h60v-70h70v-60h-70v-70h-60v70h-70v60h70v70Zm170-40Z"
+                            />
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <footer>© 2024 BilMatch</footer>
+    </body>
+
+    <style>
+        .home-page {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+                'Helvetica Neue', sans-serif;
+            background: url(images/background.jpg) no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-grow: 1;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: calc(100vh - 40px);
+        }
+
+        .header-right {
+            display: flex;
+        }
+        body {
+            overflow: hidden;
+        }
+
+        header .logo {
+            max-height: 70px;
+        }
+
+        .logo {
+            margin-top: 10px;
+        }
+
+        .title {
+            font-size: 1.5em;
+            margin: 5px 0 0 0;
+        }
+
+        .form-group {
+            margin-bottom: 1em;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.3em;
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 0.5em;
+            border-radius: 6px;
+            border: 1px solid #aaa;
+            font-size: 1em;
+        }
+
+        .signinButton {
+            padding: 0.7em 2em;
+            border: none;
+            border-radius: 20px;
+            background-color: #0077cc;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .signinButton:hover {
+            background-color: #005fa3;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #c00;
+            color: white;
+            font-size: 0.9em;
+        }
+
+        label {
+            color: aliceblue;
+        }
+
+        .gender-options {
+            display: flex;
+            gap: 20px;
+            margin-top: 5px;
+        }
+
+        .gender-label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 1em;
+        }
+
+        #profiles-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .profile-card {
+            width: 300px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .buttons {
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .action-btn {
+            width: 100px;
+            height: 40px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .nav-links li {
+            display: inline-block;
+        }
+
+        .nav-icon {
+            width: 32px;
+            height: 32px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 10px 0;
+            text-align: center;
+            position: relative;
+            bottom: 115px;
+            z-index: 10;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .nav-links li {
+            display: inline-block;
+        }
+
+        .nav-icon {
+            width: 32px;
+            height: 32px;
+            transition: transform 0.2s ease;
+            filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
+        }
+
+        .nav-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .header-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background-color: lightskyblue;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            flex: 1;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        .create-account-button {
+            background-color: #ffffff;
+            border: none;
+            color: black;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .login-button {
+            background-color: #ffffff;
+            border: none;
+            color: black;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+        }
+
+        .create-account-button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .home-page {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+                'Helvetica Neue', sans-serif;
+            background: url(/images/background.jpg) no-repeat center center
+                fixed;
+            background-size: cover;
+            display: flex;
+            flex-grow: 1;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: calc(100vh - 100px);
+        }
+
+        .title {
+            font-size: 1.5em;
+            margin: 5px 0 0 0;
+            color: black;
+            bottom: 20px;
+        }
+
+        .intro {
+            font-size: 1.2em;
+            margin-bottom: 1em;
+            font-weight: bolder;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-group {
+            margin-bottom: 1em;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.3em;
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 0.5em;
+            border-radius: 6px;
+            border: 1px solid #aaa;
+            font-size: 1em;
+        }
+
+        .signinButton {
+            padding: 0.7em 2em;
+            border: none;
+            border-radius: 20px;
+            background-color: #0077cc;
+            font-size: 1em;
+            cursor: pointer;
+            color: whitesmoke;
+            transition: background-color 0.2s ease;
+        }
+
+        .signinButton:hover {
+            background-color: #005fa3;
+        }
+
+        footer {
+            position: relative;
+            bottom: 115px;
+            text-align: center;
+            height: 20px;
+            background-color: #c00;
+            color: white;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gender-options {
+            display: flex;
+            gap: 20px;
+            margin-top: 5px;
+        }
+
+        .gender-label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 1em;
+            color: white;
+        }
+
+        .selection {
+            padding: 40px;
+            color: white;
+            border-radius: 20px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            position: relative;
+            bottom: 40px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px);
+        }
+
+        .sign-in-error {
+            color: red;
+            margin-top: 4px;
+        }
+
+        label {
+            color: white;
+        }
+    </style>
+</html>
