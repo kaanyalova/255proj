@@ -25,6 +25,7 @@ db.exec(`
   id TEXT PRIMARY KEY,
   name TEXT NOT NULL,
   surname TEXT NOT NULL,
+  email TEXT NOT NULL,
   birth_date INTEGER NOT NULL,
   bio TEXT,
   password TEXT
@@ -70,7 +71,17 @@ Bun.serve({
                     .all(newUserForm.name, newUserForm.surname);
 
                 if (usersWithSameName.length > 0) {
-                    return new Response('User with name already exists', {
+                    return new Response('User already exists', {
+                        status: 409,
+                    });
+                }
+
+                const usersWithSameEmail = db
+                    .query('SELECT * FROM User WHERE email = ?')
+                    .all(newUserForm.email);
+
+                if (usersWithSameName.length > 0) {
+                    return new Response('User already exists', {
                         status: 409,
                     });
                 }
@@ -86,11 +97,12 @@ Bun.serve({
                 }
 
                 db.query(
-                    'INSERT INTO User (id, name, surname, birth_date, password) VALUES (?, ?, ?, ?, ?)'
+                    'INSERT INTO User (id, name, surname, email, birth_date, password) VALUES (?, ?, ?, ?, ?, ?)'
                 ).run(
                     userId,
                     newUserForm.name,
                     newUserForm.surname,
+                    newUserForm.email,
                     dateInUnixMilis,
                     hashed
                 );
@@ -186,13 +198,12 @@ Bun.serve({
             POST: async (req) => {
                 const formData = await req.formData();
 
-                const name = formData.get('name') as string;
-                const surname = formData.get('surname') as string;
+                const email = formData.get('email') as string;
                 const password = formData.get('password') as string;
 
                 const user: User = db
-                    .query('SELECT * FROM User WHERE name = ? AND surname = ?')
-                    .get(name, surname) as User;
+                    .query('SELECT * FROM User WHERE email = ?')
+                    .get(email) as User;
 
                 const hashFromDB = user.password as string;
 

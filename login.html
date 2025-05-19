@@ -73,35 +73,14 @@
                 >
                     <div class="input-field">
                         <input
-                            id="name"
-                            name="name"
-                            type="text"
-                            maxlength="15"
-                            pattern="[A-Za-z]+"
+                            id="email"
+                            name="email"
+                            type="email"
                             required
                             autocomplete="off"
                         />
-                        <label for="name">Name</label>
-                        <span
-                            class="helper-text"
-                            data-error="Only letters, max 15 characters"
-                        ></span>
-                    </div>
-                    <div class="input-field">
-                        <input
-                            id="surname"
-                            name="surname"
-                            type="text"
-                            maxlength="15"
-                            pattern="[A-Za-z]+"
-                            required
-                            autocomplete="off"
-                        />
-                        <label for="surname">Surname</label>
-                        <span
-                            class="helper-text"
-                            data-error="Only letters, max 15 characters"
-                        ></span>
+                        <label for="email">Email</label>
+                        <span class="helper-text"></span>
                     </div>
 
                     <div class="input-field">
@@ -168,6 +147,10 @@
 
             .pass-input {
                 color: white;
+            }
+
+            #email {
+                color: white !important;
             }
         </style>
     </body>
