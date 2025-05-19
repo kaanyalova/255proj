@@ -7,7 +7,7 @@ $(async () => {
     const req = await fetch(`/api/get_user/${currentUserID}`);
     const user: User = await req.json();
 
-    $('#account-name-slot').html(`Hello, ${user.name}`);
+    $('#account-name-slot').text(`Hello, ${user.name}`);
 
     const imageHTML = /*html*/ `
   <img src="/api/get_user_image/${user.id}" width="400"/> `;

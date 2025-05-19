@@ -1,207 +1,357 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Swipes</title>
-  </head>
-  <script src="javascript/swipes.ts" type="module"></script>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Sign In</title>
+        <link rel="stylesheet" href="style.css" />
 
-  <body>
-    <div class="container">
-      <div class="draggable">
-        <div class="profile" id="profile-slot"></div>
+        <script src="javascript/swipes.ts" type="module"></script>
+    </head>
+    <body>
+        <header>
+            <img class="logo" src="images/logo.png" alt="Logo" />
+            <h1 class="title">Matching Majors, Creating Bonds</h1>
+        </header>
 
-        <div class="bottom">
-          <button class="dislike bottom-text" id="dislikeBtn">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="24px"
-              viewBox="0 -960 960 960"
-              width="24px"
-              fill="#e8eaed"
-            >
-              <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z" />
-            </svg>
+        <div class="container">
+            <div class="draggable">
+                <div class="profile" id="profile-slot"></div>
 
-            Dislike
-          </button>
-          <button class="like bottom-text" id="likeBtn">
-            Like
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="24px"
-              viewBox="0 -960 960 960"
-              width="24px"
-              fill="#000000 "
-            >
-              <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
-            </svg>
-          </button>
+                <div class="bottom">
+                    <button class="dislike bottom-text" id="dislikeBtn">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="24px"
+                            viewBox="0 -960 960 960"
+                            width="24px"
+                            fill="#e8eaed"
+                        >
+                            <path
+                                d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"
+                            />
+                        </svg>
+
+                        Dislike
+                    </button>
+                    <button class="like bottom-text" id="likeBtn">
+                        Like
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="24px"
+                            viewBox="0 -960 960 960"
+                            width="24px"
+                            fill="#000000 "
+                        >
+                            <path
+                                d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"
+                            />
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </body>
-</html>
 
-<style>
-  body {
-    margin: 0;
-    overflow: hidden;
-  }
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <img
+                            src="images/home.png"
+                            alt="Home"
+                            class="nav-icon"
+                        />
+                    </a>
+                </li>
+                <li id="swipes-button">
+                    <a href="swipes.html">
+                        <img
+                            src="images/matches.png"
+                            alt="Matches"
+                            class="nav-icon"
+                        />
+                    </a>
+                </li>
+                <li id="profile-button">
+                    <a href="profile.html">
+                        <img
+                            src="images/profile.png"
+                            alt="Profile"
+                            class="nav-icon"
+                        />
+                    </a>
+                </li>
+                <li>
+                    <a href="game/">
+                        <svg
+                            class="nav-icon"
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="32px"
+                            viewBox="0 -960 960 960"
+                            width="32px"
+                            fill="#e8eaed"
+                        >
+                            <path
+                                d="M182-200q-51 0-79-35.5T82-322l42-300q9-60 53.5-99T282-760h396q60 0 104.5 39t53.5 99l42 300q7 51-21 86.5T778-200q-21 0-39-7.5T706-230l-90-90H344l-90 90q-15 15-33 22.5t-39 7.5Zm16-86 114-114h336l114 114q2 2 16 6 11 0 17.5-6.5T800-304l-44-308q-4-29-26-48.5T678-680H282q-30 0-52 19.5T204-612l-44 308q-2 11 4.5 17.5T182-280q2 0 16-6Zm482-154q17 0 28.5-11.5T720-480q0-17-11.5-28.5T680-520q-17 0-28.5 11.5T640-480q0 17 11.5 28.5T680-440Zm-80-120q17 0 28.5-11.5T640-600q0-17-11.5-28.5T600-640q-17 0-28.5 11.5T560-600q0 17 11.5 28.5T600-560ZM310-440h60v-70h70v-60h-70v-70h-60v70h-70v60h70v70Zm170-40Z"
+                            />
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </nav>
 
-  html {
-    /*
-	When the scroll animations happen there is an bounce effect on mobile and some desktop browsers
-	because there is no way of putting the image over the page boundaries (that i can find) we disable it completely. 
-	*/
-    overscroll-behavior: none;
-  }
+        <footer>© 2024 BilMatch</footer>
 
-  button {
-    border: none;
-    outline: none;
-    padding: 0;
-    border: none;
-    background: none;
-  }
+        <script src="data.js"></script>
+        <!-- your profile data -->
+        <script src="script.js"></script>
 
-  button {
-    color: white;
-  }
-  .profile-img {
-    pointer-events: none;
-    padding: 10px;
-    margin: 10px;
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-  }
+        <style>
+            /* General body styles */
+            body {
+                margin: 0;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+                    'Helvetica Neue', sans-serif;
+                background: url('images/background.jpg') no-repeat center center
+                    fixed;
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+                padding-bottom: 110px; /* Space for navbar + footer */
+            }
 
+            /* Header styles */
+            header {
+                position: relative;
+                height: 17vh;
+                padding: 20px;
+                text-align: center;
+                background: rgba(255, 255, 255, 0.3);
+                backdrop-filter: blur(8px);
+                background-color: lightskyblue;
+            }
+
+            header .logo {
+                max-height: 70px;
+            }
+
+            .title {
+                font-size: 1.5em;
+                margin: 5px 0 0 0;
+                color: white;
+            }
+
+            /* Navbar styles */
+            .navbar {
+                position: fixed;
+                left: 0;
+                bottom: 60px; /* Footer height */
+                width: 100%;
+                height: 50px;
+                background: rgba(34, 34, 34, 0.8); /* Semi-transparent black */
+                backdrop-filter: blur(10px); /* Blur effect */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 999;
+                border-top: 1px solid rgba(255, 255, 255, 0.2); /* Optional border for separation */
+            }
+
+            .nav-links {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                gap: 2rem;
+                align-items: center;
+            }
+
+            .nav-icon {
+                width: 32px;
+                height: 32px;
+                transition: transform 0.2s ease;
+            }
+
+            .nav-icon:hover {
+                transform: scale(1.1);
+            }
+
+            /* Footer styles */
+            footer {
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 40px;
+                background: #c00;
+                color: white;
+                text-align: center;
+                padding: 10px 0;
+                font-size: 0.9em;
+                z-index: 998;
+            }
+
+            body {
+                margin: 0;
+                overflow: hidden;
+            }
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            html {
+                /*
+When the scroll animations happen there is an bounce effect on mobile and some desktop browsers
+because there is no way of putting the image over the page boundaries (that i can find) we disable it completely. 
+*/
+                overscroll-behavior: none;
+            }
+
+            button {
+                border: none;
+                outline: none;
+                padding: 0;
+                border: none;
+                background: none;
+            }
+
+            button {
+                color: white;
+            }
+            .profile-img {
+                pointer-events: none;
+                padding: 10px;
+                margin: 10px;
+                max-width: 100%;
+                height: auto;
+                object-fit: contain;
+            }
+
+            .draggable {
+                top: calc(20vh);
+                left: calc(50vw - 400px);
+                position: absolute;
+                width: 800px;
+                height: 70vh;
+                background-color: whitesmoke;
+                color: black;
+                border-radius: 20px;
+                display: flex;
+                flex-direction: column;
+                backdrop-filter: blur(15px);
+                background-color: rgba(
+                    201,
+                    201,
+                    201,
+                    0.4
+                ) !important; /*where is the color coming from  */
+                font-family: Arial, Helvetica, sans-serif;
+                user-select: none;
+            }
+
+            @media (width < 800px) {
+                .draggable {
+                    width: 600px;
+                    left: calc(50vw - 300px) !important;
+                }
+            }
+
+            @media (width < 600px) {
+                .draggable {
+                    width: 400px;
+                    left: calc(50vw - 200px) !important;
+                }
+            }
+
+            /*
+Too small and breaks on  smaller phones 
+@media (width < 400px) {
   .draggable {
-    top: calc(20vh);
-    left: calc(50vw - 400px);
-    position: absolute;
-    width: 800px;
-    height: 70vh;
-    /*background-color: whitesmoke;*/
-    color: black;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    backdrop-filter: blur(15px);
-    background-color: rgba(
-      201,
-      201,
-      201,
-      0.4
-    ) !important; /*where is the color coming from  */
-    font-family: Arial, Helvetica, sans-serif;
-    user-select: none;
+    width: 300px;
+    left: calc(50vw - 150px) !important;
   }
+}
+  
+*/
 
-  @media (width < 800px) {
-    .draggable {
-      width: 600px;
-      left: calc(50vw - 300px) !important;
-    }
-  }
+            .profile-desc {
+                padding: 10px;
+                overflow-y: auto;
+                font-size: 25px;
+            }
 
-  @media (width < 600px) {
-    .draggable {
-      width: 400px;
-      left: calc(50vw - 200px) !important;
-    }
-  }
+            h3 {
+                margin: 0;
+                font-size: 30px;
+            }
 
-  /*
-	Too small and breaks on  smaller phones 
-	@media (width < 400px) {
-		.draggable {
-			width: 300px;
-			left: calc(50vw - 150px) !important;
-		}
-	}
-		
-	*/
+            h4 {
+                margin: 5px;
+                font-size: 25px;
+            }
 
-  .profile-desc {
-    padding: 10px;
-    overflow-y: auto;
-    font-size: 25px;
-  }
+            .container {
+                background: url(/images/background.jpg) no-repeat center center
+                    fixed !important;
+                background-size: cover !important;
+                height: calc(100vh);
+                box-shadow: rgba(0, 0, 0);
+                touch-action: none;
+            }
 
-  h3 {
-    margin: 0;
-    font-size: 30px;
-  }
+            :global(body, html) {
+                /* Please stop scrolling on mobile */
+                overflow: hidden;
+                position: relative;
+            }
 
-  h4 {
-    margin: 5px;
-    font-size: 25px;
-  }
+            .bottom {
+                width: 100%;
+                height: 60px;
+                background-color: blue;
+                display: flex;
+                background: linear-gradient(
+                    90deg,
+                    rgba(247, 0, 0, 1) 25%,
+                    rgba(83, 237, 114, 1) 75%
+                );
+                border-radius: 0px 0px 20px 20px;
+                margin-top: auto;
+                justify-content: space-between;
+            }
 
-  .container {
-    background: url(/images/background.jpg) no-repeat center center fixed !important;
-    background-size: cover !important;
-    height: calc(100vh);
-    box-shadow: rgba(0, 0, 0);
-    touch-action: none;
-  }
+            .profile {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                padding: 20px;
+                width: 100%;
+                overflow: hidden;
+            }
 
-  :global(body, html) {
-    /* Please stop scrolling on mobile */
-    overflow: hidden;
-    position: relative;
-  }
+            .bottom-text {
+                display: flex;
+                align-items: center;
 
-  .bottom {
-    width: 100%;
-    height: 60px;
-    background-color: blue;
-    display: flex;
-    background: linear-gradient(
-      90deg,
-      rgba(247, 0, 0, 1) 25%,
-      rgba(83, 237, 114, 1) 75%
-    );
-    border-radius: 0px 0px 20px 20px;
-    margin-top: auto;
-    justify-content: space-between;
-  }
+                font-size: 25px;
+            }
 
-  .profile {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
-    width: 100%;
-    overflow: hidden;
-  }
+            .dislike {
+                color: white;
+                fill: white;
+                margin-left: 12px;
+            }
+            .like {
+                color: black;
+                margin-right: 12px;
+            }
 
-  .bottom-text {
-    display: flex;
-    align-items: center;
-
-    font-size: 25px;
-  }
-
-  .dislike {
-    color: white;
-    fill: white;
-    margin-left: 12px;
-  }
-  .like {
-    color: black;
-    margin-right: 12px;
-  }
-
-  img {
-    pointer-events: none;
-  }
-</style>
+            img {
+                pointer-events: none;
+            }
+        </style>
+    </body>
+</html>
